@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+html, body {
+  margin: 0;
+  width: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  padding-top: 30px;
+}
+
+body main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15% 70% 15%;
+      grid-template-columns: 15% 70% 15%;
+}
+
+body main .main-content article {
+  margin-bottom: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #d1d5da;
+  border-radius: 5px;
+}
+
+body main .main-content article .article-content {
+  height: 300px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+body main .main-content article .article-content .a-video-embed {
+  padding: 20px 40px 20px 20px;
+}
+
+body main .main-content article .article-content .a-video-embed iframe {
+  height: 100%;
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 19px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 19px 1px rgba(0, 0, 0, 0.75);
+}
+
+body main .main-content article .article-content .a-video-info {
+  padding: 20px 20px 20px 0;
+  position: relative;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-title {
+  font-weight: 600;
+  font-size: 1.7em;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social {
+  margin-top: 10px;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social a {
+  padding-right: 10px;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social a .rojo {
+  color: red;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social a .negro {
+  color: black;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social a .azul {
+  color: #00acee;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-marks {
+  margin-top: 15px;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-marks ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-marks ol li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-marks ol li i {
+  margin-right: 10px;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-marks ol li:hover {
+  color: #3232CD;
+  font-weight: 700;
+}
+
+body main .main-content article .article-content .a-video-info button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  background-color: #3232CD;
+  color: whitesmoke;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+}
+
+body main .main-content article .article-video-tags {
+  display: none;
+  padding: 0px 20px 10px 20px;
+}
+
+body main .main-content article .article-video-tags .tags {
+  padding: 20px 0 10px 0;
+}
+
+body main .main-content article .article-video-tags .tags ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body main .main-content article .article-video-tags .tags ol li {
+  display: inline-block;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3232CD;
+  color: whitesmoke;
+  font-family: 'Lato', sans-serif;
+  padding: 3px 8px 3px 8px;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+@media only screen and (max-width: 1200px) {
+  body main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 10% 80% 10%;
+        grid-template-columns: 10% 80% 10%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  body main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 5% 90% 5%;
+        grid-template-columns: 5% 90% 5%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body main .main-content article .article-content {
+    height: 600px;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+  body main .main-content article .article-content .a-video-embed {
+    padding: 20px;
+  }
+  body main .main-content article .article-content .a-video-info {
+    padding: 20px;
+  }
+  body main .main-content article .article-content button {
+    left: 20px !important;
+  }
+}
+/*# sourceMappingURL=search.css.map */

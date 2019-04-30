@@ -1,0 +1,745 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+html, body {
+  margin: 0;
+  width: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  position: relative;
+  padding-bottom: 50px;
+}
+
+body header {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #d1d5da;
+  background-image: url("../img/bgposible.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body header .h-navbar {
+  height: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+body header .h-navbar .h-navbar-logo img {
+  height: 110px;
+  padding: 20px;
+}
+
+body header .h-navbar .h-navbar-search {
+  padding: 0 50px 0 50px;
+}
+
+body header .h-navbar .h-navbar-search form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 90% 10%;
+      grid-template-columns: 90% 10%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+body header .h-navbar .h-navbar-search form input {
+  width: calc(100% - 20px);
+  padding: 15px 10px 15px 10px;
+  border-radius: 7px 0 0 7px;
+  border: none;
+  font-size: 1em;
+  color: grey;
+}
+
+body header .h-navbar .h-navbar-search form .lupa-search-bar {
+  border-radius: 0 7px 7px 0;
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke;
+  border-left: 1px solid #d1d5da;
+  cursor: pointer;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+}
+
+body header .h-navbar .h-navbar-search form .lupa-search-bar img {
+  height: 30px;
+}
+
+body header .h-navbar nav .nav-responsive {
+  display: none;
+  font-size: 2em;
+  text-align: right;
+  padding-right: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+body header .h-navbar nav .nav-non-responsive {
+  z-index: 10000;
+}
+
+body header .h-navbar nav .nav-non-responsive ul {
+  margin: 0;
+  padding: 0;
+}
+
+body header .h-navbar nav .nav-non-responsive ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 20px;
+}
+
+body header .h-navbar nav .nav-non-responsive ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1em;
+}
+
+body header .h-navbar nav .nav-non-responsive ul li a:hover {
+  color: #00fcf8;
+}
+
+body header .polygon-container {
+  width: 100%;
+  height: 35vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+body header .polygon-container .polygon-svg-decoration {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+body header .polygon-container .polygon-svg-decoration svg {
+  height: 100%;
+  width: 100%;
+}
+
+body header .polygon-container .polygon-svg-decoration svg polygon {
+  fill: white;
+}
+
+body header .polygon-container .polygon-svg-decoration #Layer_2 {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+body main {
+  margin-top: 50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15% 70% 15%;
+      grid-template-columns: 15% 70% 15%;
+}
+
+body main .main-foro-content article {
+  position: relative;
+  margin-bottom: 10px;
+  background-color: whitesmoke;
+  border: 1px solid #d1d5da;
+  border-radius: 5px;
+}
+
+body main .main-foro-content article .notificacion {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.7em;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+
+body main .main-foro-content article .notificacion:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+body main .main-foro-content article #show-answer {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  cursor: pointer;
+  border: 1px solid #d1d5da;
+  font-family: 'Lato', sans-serif;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+body main .main-foro-content article #show-answer i {
+  font-size: 1.5em;
+}
+
+body main .main-foro-content article .question-main-content {
+  padding: 20px;
+  padding-right: 40px;
+  min-height: 258px;
+}
+
+body main .main-foro-content article .question-main-content .question-title {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 6% 94%;
+      grid-template-columns: 6% 94%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .main-foro-content article .question-main-content .question-title img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+body main .main-foro-content article .question-main-content .question-title span {
+  margin-left: 15px;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user {
+  min-height: 68px;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user form textarea {
+  width: 100%;
+  min-height: 68px;
+  padding: 5px;
+  border: 1px solid #d1d5da;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user form ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user form ol li {
+  display: inline-block;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user form ol li input {
+  margin-top: 10px;
+  border: 1px solid #d1d5da;
+  background-color: white;
+  border-radius: 5px;
+  min-height: 30px;
+  min-width: 208px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+body main .main-foro-content article .question-main-content .question-answer-user form ol li button {
+  margin-left: 10px;
+  cursor: pointer;
+  background-color: #3232CD;
+  min-height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
+body main .main-foro-content article .answer-main-content {
+  display: none;
+  border-top: 1px solid #d1d5da;
+  margin: 0 40px 30px 20px;
+  padding: 20px 0 0 50px;
+}
+
+body main .main-foro-content article .answer-main-content .answer {
+  border: 1px solid #d1d5da;
+  background-color: #cbfdcb;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+body main .main-foro-content article .answer-main-content .answer .answer-title {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 6% 94%;
+      grid-template-columns: 6% 94%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .main-foro-content article .answer-main-content .answer .answer-title img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+body main .main-foro-content article .answer-main-content .answer .answer-title span {
+  margin-left: 15px;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+body main .main-foro-content article .active-notifications-bell {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body main .main-foro-content article .active-notifications-bell div {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+}
+
+body main .main-foro-content article .active-notifications-bell div .opacity-bg-message {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.8;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message {
+  position: absolute;
+  background-color: white;
+  max-height: 170px;
+  max-width: 400px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 7px;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div {
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  padding: 15px;
+  text-align: center;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div span {
+  width: 100%;
+  font-size: 1.7em;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div form {
+  margin-top: 20px;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div form ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div form ol li {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div form ol li input {
+  font-family: 'Lato', sans-serif;
+  width: calc(100% - 2px);
+  border: 1px solid #d1d5da;
+  background-color: white;
+  border-radius: 5px;
+  min-height: 30px;
+  text-align: center;
+}
+
+body main .main-foro-content article .active-notifications-bell div .notification-message div form ol li button {
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  width: 100%;
+  background-color: #3232CD;
+  min-height: 34px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+}
+
+body .add-new-question-button {
+  z-index: 10000;
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 65px;
+  height: 65px;
+}
+
+body .add-new-question-button button {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  color: whitesmoke;
+  border: none;
+  border-radius: 50%;
+  background: #060154;
+  background: -webkit-gradient(linear, left top, right top, from(#060154), color-stop(35%, #090979), to(#00d4ff));
+  background: linear-gradient(90deg, #060154 0%, #090979 35%, #00d4ff 100%);
+  -webkit-box-shadow: 0 0 8px #00d4ff, inset 0 0 5px #00d4ff;
+          box-shadow: 0 0 8px #00d4ff, inset 0 0 5px #00d4ff;
+}
+
+body .add-new-question-button button:hover {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+body .add-new-question-button button i {
+  font-size: 1.5em;
+}
+
+body .add-new-question-window {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body .add-new-question-window div {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+}
+
+body .add-new-question-window div .opacity-bg-message {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.8;
+}
+
+body .add-new-question-window div .notification-message {
+  position: fixed;
+  background-color: whitesmoke;
+  border: 2px solid #d1d5da;
+  max-height: 670px;
+  max-width: 600px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 7px;
+}
+
+body .add-new-question-window div .notification-message form {
+  height: calc(100% - 80px);
+  padding: 40px;
+}
+
+body .add-new-question-window div .notification-message form ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body .add-new-question-window div .notification-message form ul li {
+  padding: 10px;
+}
+
+body .add-new-question-window div .notification-message form ul li label {
+  font-size: 2em;
+}
+
+body .add-new-question-window div .notification-message form ul li input {
+  width: calc(100% - 25px);
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid #d1d5da;
+  padding: 5px;
+  padding-left: 15px;
+  font-size: 1em;
+  font-family: 'Lato', sans-serif;
+}
+
+body .add-new-question-window div .notification-message form ul li textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 15px;
+  border: 1px solid #d1d5da;
+  background-color: white;
+  border-radius: 7px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  font-size: 1em;
+}
+
+body .add-new-question-window div .notification-message form ul li button {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  width: 100%;
+  background-color: #3232CD;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+}
+
+/* -----------------------------------------------------------------------------------------
+                                        RESPONSIVE WEB
+----------------------------------------------------------------------------------------- */
+@media only screen and (max-width: 1600px) {
+  body header .h-navbar .h-navbar-search form {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 85% 15%;
+        grid-template-columns: 85% 15%;
+  }
+}
+
+@media only screen and (max-width: 1270px) {
+  body header .h-navbar {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 40% 40%;
+        grid-template-columns: 20% 40% 40%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  body main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 10% 80% 10%;
+        grid-template-columns: 10% 80% 10%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  body main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 5% 90% 5%;
+        grid-template-columns: 5% 90% 5%;
+  }
+  body .add-new-question-button {
+    width: 55px;
+    height: 55px;
+  }
+  body .add-new-question-button button i {
+    font-size: 1.4em;
+  }
+}
+
+@media only screen and (max-width: 1083px) {
+  body main .main-foro-content article .question-main-content .question-title span {
+    font-size: 1.7em;
+  }
+}
+
+@media only screen and (max-width: 1061px) {
+  body header .h-navbar nav .nav-non-responsive ul li {
+    padding: 15px;
+  }
+  body header .h-navbar nav .nav-non-responsive ul li a {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  body main .main-foro-content article .question-main-content .question-title {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 10% 90%;
+        grid-template-columns: 10% 90%;
+  }
+  body main .main-foro-content article .question-main-content .question-title span {
+    font-size: 1.5em;
+  }
+  body main .main-foro-content article .answer-main-content .answer .answer-title {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 10% 90%;
+        grid-template-columns: 10% 90%;
+  }
+}
+
+@media only screen and (max-width: 905px) {
+  body header .h-navbar {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 70% 10%;
+        grid-template-columns: 20% 70% 10%;
+  }
+  body header .h-navbar nav .nav-non-responsive {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 153px;
+    width: 150px;
+    background-color: whitesmoke;
+  }
+  body header .h-navbar nav .nav-non-responsive ul li {
+    display: block;
+  }
+  body header .h-navbar nav .nav-non-responsive ul li a {
+    color: black;
+  }
+  body header .h-navbar nav .nav-non-responsive ul li a:hover {
+    color: grey;
+  }
+  body header .h-navbar nav .nav-responsive {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 883px) {
+  body main .main-foro-content article .question-main-content {
+    padding-right: 20px;
+  }
+  body main .main-foro-content article .question-main-content .question-title {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+  body main .main-foro-content article .question-main-content .question-title img {
+    width: 50px;
+  }
+  body main .main-foro-content article .question-main-content .question-title span {
+    margin: 0;
+    margin-top: 10px;
+  }
+  body main .main-foro-content article .answer-main-content {
+    margin: 0 20px 30px 20px;
+  }
+  body main .main-foro-content article .answer-main-content .answer .answer-title img {
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body .add-new-question-window div .notification-message {
+    max-height: 570px;
+    max-width: 500px;
+  }
+  body .add-new-question-window div .notification-message form {
+    height: calc(100% - 40px);
+    padding: 20px;
+  }
+  body .add-new-question-window div .notification-message form ul li label {
+    font-size: 1.5em;
+  }
+  body .add-new-question-window div .notification-message form ul li input {
+    height: 30px;
+  }
+  body .add-new-question-window div .notification-message form ul li textarea {
+    min-height: 270px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body header .h-navbar {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 25% 65% 10%;
+        grid-template-columns: 25% 65% 10%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body header .h-navbar .h-navbar-search {
+    display: none;
+  }
+  body header .h-navbar nav .nav-responsive {
+    padding-right: 10px;
+  }
+  body .add-new-question-window div .notification-message {
+    max-height: 500px;
+    max-width: 400px;
+  }
+  body .add-new-question-window div .notification-message form ul li label {
+    font-size: 1.5em;
+  }
+  body .add-new-question-window div .notification-message form ul li textarea {
+    min-height: 200px;
+  }
+}
+
+@media only screen and (max-width: 527px) {
+  body main .main-foro-content article .question-main-content .question-answer-user form ol li {
+    width: 100%;
+  }
+  body main .main-foro-content article .question-main-content .question-answer-user form ol li input {
+    min-width: 0;
+    width: calc(100% - 2px) !important;
+  }
+  body main .main-foro-content article .question-main-content .question-answer-user form ol li button {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  body main .main-foro-content article .answer-main-content {
+    padding: 20px 0 0 0;
+  }
+  body main .main-foro-content article .active-notifications-bell div .notification-message {
+    max-height: 200px;
+    max-width: 290px;
+  }
+  body .add-new-question-window div .notification-message {
+    max-height: 500px;
+    max-width: 300px;
+  }
+  body .add-new-question-window div .notification-message form {
+    height: calc(100% - 20px);
+    padding: 10px;
+  }
+  body .add-new-question-window div .notification-message form ul li {
+    padding: 5px;
+  }
+  body .add-new-question-window div .notification-message form ul li label {
+    font-size: 1.5em;
+  }
+  body .add-new-question-window div .notification-message form ul li input {
+    height: 30px;
+  }
+  body .add-new-question-window div .notification-message form ul li textarea {
+    min-height: 270px;
+  }
+}

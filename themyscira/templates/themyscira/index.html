@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'themyscira/img/iconob.ico' %}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'themyscira/css/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="{% static 'themyscira/js/main.js' %}"></script>
+    <title>Themyscira</title>
+</head>
+<body>
+
+    <header>
+        <div class="h-navbar">
+            <div class="h-navbar-logo">
+		    <a href="index.html"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
+            </div>
+            <div class="h-navbar-search">
+                <form action="#">
+                    <input type="text" placeholder="Buscar ...">
+                    <div class="lupa-search-bar">
+			<img src="{% static 'themyscira/img/busqueda.svg' %}" alt="Glass Image">
+                    </div>
+                </form>
+            </div>
+            <nav>
+                <div class="nav-responsive">
+                    <i class="fas fa-bars" id="responsive-ico"></i>
+                </div>
+                <div class="nav-non-responsive">
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Search</a></li>
+                        <li><a href="#">Foro</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="h-slogan">
+            <div></div>
+	    <div><img src="{% static 'themyscira/img/sloganres.png' %}" alt="Slogan Themyscira"></div>
+            <div></div>
+        </div>
+
+        <div class="h-main">
+            <div class="h-main-video">
+                <div>
+                    <iframe
+                        src="https://player.twitch.tv/?channel=adam13531&muted=true"
+                        frameborder="0"
+                        scrolling="no"
+                        allowfullscreen="true">
+                    </iframe>
+		    <img src="{% static 'themyscira/img/destacado2.png' %}" alt="Icono Stream Destacado">
+                </div>
+            </div>
+            <div class="h-main-data">
+                <div class="h-main-data-chat">
+                    <div>
+                        <button id="show-chat-embed">Show Chat</button>
+                        <iframe frameborder="0"
+                            scrolling="no"
+                            id="chat-embed"
+                            src="https://www.twitch.tv/embed/adam13531/chat">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>

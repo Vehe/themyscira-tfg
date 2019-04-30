@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'themyscira/css/404.css' %}">
+    <title>404 Not Found</title>
+</head>
+<body>
+        <div class="mars"></div>
+	<img src="{% static 'themyscira/img/404.svg' %}" class="logo-404" />
+	<img src="{% static 'themyscira/img/meteor.svg' %}" class="meteor" />
+        <p class="title">Oh no!!</p>
+        <p class="subtitle">
+            Estás escribiendo mal la URL <br /> o la página que buscas ya no esta aquí.
+        </p>
+        <div align="center">
+            <a class="btn-back" href="/">Vuelve al inicio</a>
+        </div>
+	<img src="{% static 'themyscira/img/astronaut.svg' %}" class="astronaut" />
+	<img src="{% static 'themyscira/img/spaceship.svg' %}" class="spaceship" />
+</body>
+</html>
