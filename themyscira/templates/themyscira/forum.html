@@ -152,5 +152,19 @@
             </div>
         </div>
     </div>
+    {% if request.session.has_message %}
+    	<div class="notification-box-user" id="{{ request.session.has_message.error }}">
+	    <div class="dot"></div>
+	    <div class="dot two"></div>
+	    <div class="{{ request.session.has_message.face }}">
+	        <div class="eye"></div>
+		<div class="eye right"></div>
+		<div class="mouth {{ request.session.has_message.status }}"></div>
+	    </div>
+	    <div class="shadow {{ request.session.has_message.movement }}"></div>
+	    <div class="message"><h1 class="alert">{{ request.session.has_message.error_text }}</h1><p>{{ request.session.has_message.msg }}</p></div>
+	    <button class="button-box"><h1 class="{{ request.session.has_message.color }}">cerrar</h1></button>
+	</div>
+    {% endif %}
 </body>
 </html>

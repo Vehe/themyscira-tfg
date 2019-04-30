@@ -46,9 +46,9 @@ $( document ).ready(function() {
     $( '.notificacion' ).click(function() {
 
         const campana = $( this );
-	campana.css( 'color', '#efb810' );
+        campana.css( 'color', '#efb810' );
 
-        setTimeout(function(){ 
+        setTimeout(function(){
 
             campana.closest('article').find('.active-notifications-bell').show();
 
@@ -67,12 +67,23 @@ $( document ).ready(function() {
     });
 
     /**
-     * Añade un evento click a el botón de Activar de la ventana emergente que se abre cuando pulsamos en activar las notificaciones,
-     * prevenimos que se envie el form con el preventDefault.
+     * Crea el evento para borrar el cartel de mensaje al usuario el click del botón,
+     * también crea un timeout para que el cartel se vaya automáticamente a los 3s.
      */
-    $( '#activar-notificaciones-question' ).click(function(event){
+    $( '.notification-box-user button' ).click(function() {
 
+        $( this ).parent().remove();
 
     });
+
+    setTimeout(function() {
+
+        $( '.notification-box-user' ).fadeOut(400, function() {
+
+            $( this ).remove();
+
+        });
+
+    }, 3000);
 
 });

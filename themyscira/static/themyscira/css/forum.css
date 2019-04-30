@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 html, body {
   margin: 0;
   width: 100%;
@@ -147,7 +147,7 @@ body header .polygon-container .polygon-svg-decoration #Layer_2 {
 }
 
 body main {
-  margin-top: 50px;
+  margin-top: 70px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 15% 70% 15%;
@@ -156,7 +156,7 @@ body main {
 
 body main .main-foro-content article {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   background-color: whitesmoke;
   border: 1px solid #d1d5da;
   border-radius: 5px;
@@ -273,7 +273,7 @@ body main .main-foro-content article .answer-main-content {
   display: none;
   border-top: 1px solid #d1d5da;
   margin: 0 40px 30px 20px;
-  padding: 20px 0 0 50px;
+  padding: 20px 0 0 0;
 }
 
 body main .main-foro-content article .answer-main-content .answer {
@@ -281,6 +281,7 @@ body main .main-foro-content article .answer-main-content .answer {
   background-color: #cbfdcb;
   border-radius: 5px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 body main .main-foro-content article .answer-main-content .answer .answer-title {
@@ -520,6 +521,299 @@ body .add-new-question-window div .notification-message form ul li button {
   font-size: 1em;
 }
 
+body #success-box, body #error-box {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  left: 20px;
+  bottom: 20px;
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(40%, #B0DB7D), to(#99DBB4));
+  background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 20px #cbcdd3;
+          box-shadow: 5px 5px 20px #cbcdd3;
+  -webkit-perspective: 40px;
+          perspective: 40px;
+  z-index: 20000;
+}
+
+body #success-box h1, body #error-box h1 {
+  font-size: 0.9em;
+  font-weight: 100;
+  letter-spacing: 3px;
+  padding-top: 5px;
+  color: #FCFCFC;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+body #success-box .green, body #error-box .green {
+  color: #4ec07d;
+}
+
+body #success-box .alert, body #error-box .alert {
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+body #success-box p, body #error-box p {
+  margin-top: -5px;
+  font-size: 0.7em;
+  font-weight: 100;
+  color: #5e5e5e;
+  letter-spacing: 1px;
+}
+
+body #success-box button, body #error-box button {
+  cursor: pointer;
+}
+
+body #success-box .dot, body #error-box .dot {
+  width: 8px;
+  height: 8px;
+  background: #FCFCFC;
+  border-radius: 50%;
+  position: absolute;
+  top: 4%;
+  right: 6%;
+}
+
+body #success-box .dot:hover, body #error-box .dot:hover {
+  background: #c9c9c9;
+}
+
+body #success-box .two, body #error-box .two {
+  right: 12%;
+  opacity: .5;
+}
+
+body #success-box .face, body #error-box .face {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  -webkit-animation: bounce 1s ease-in infinite;
+          animation: bounce 1s ease-in infinite;
+}
+
+body #success-box .eye, body #error-box .eye {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #777777;
+  border-radius: 50%;
+  top: 40%;
+  left: 20%;
+}
+
+body #success-box .right, body #error-box .right {
+  left: 68%;
+}
+
+body #success-box .mouth, body #error-box .mouth {
+  position: absolute;
+  top: 43%;
+  left: 41%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+body #success-box .happy, body #error-box .happy {
+  border: 2px solid;
+  border-color: transparent #777777 #777777 transparent;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+body #success-box .shadow, body #error-box .shadow {
+  position: absolute;
+  width: 21%;
+  height: 3%;
+  opacity: .5;
+  background: #777777;
+  left: 40%;
+  top: 43%;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+body #success-box .scale, body #error-box .scale {
+  -webkit-animation: scale 1s ease-in infinite;
+          animation: scale 1s ease-in infinite;
+}
+
+body #success-box .message, body #error-box .message {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 40%;
+  top: 47%;
+}
+
+body #success-box .button-box, body #error-box .button-box {
+  position: absolute;
+  background: #FCFCFC;
+  width: 50%;
+  height: 15%;
+  border-radius: 20px;
+  top: 73%;
+  left: 25%;
+  outline: 0;
+  border: none;
+  -webkit-box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+          box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+body #success-box .button-box:hover, body #error-box .button-box:hover {
+  background: #efefef;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+body #error-box {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  left: 20px;
+  bottom: 20px;
+  background: -webkit-gradient(linear, right top, left bottom, color-stop(40%, #EF8D9C), to(#FFC39E));
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 20px #cbcdd3;
+          box-shadow: 5px 5px 20px #cbcdd3;
+}
+
+body #error-box .face2 {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  -webkit-animation: roll 3s ease-in-out infinite;
+          animation: roll 3s ease-in-out infinite;
+}
+
+body #error-box .sad {
+  top: 49%;
+  border: 2px solid;
+  border-color: #777777 transparent transparent #777777;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+body #error-box .red {
+  color: #e96075;
+}
+
+body #error-box .move {
+  -webkit-animation: move 3s ease-in-out infinite;
+          animation: move 3s ease-in-out infinite;
+}
+
+/* -----------------------------------------------------------------------------------------
+                                        KEYFRAMES
+----------------------------------------------------------------------------------------- */
+@-webkit-keyframes bounce {
+  50% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+}
+@keyframes bounce {
+  50% {
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+}
+
+@-webkit-keyframes scale {
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@keyframes scale {
+  50% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@-webkit-keyframes roll {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+    -webkit-transform: rotate(168deg);
+            transform: rotate(168deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    left: 25%;
+  }
+}
+
+@keyframes roll {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+    -webkit-transform: rotate(168deg);
+            transform: rotate(168deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    left: 25%;
+  }
+}
+
+@-webkit-keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
+}
+
+@keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
+}
+
 /* -----------------------------------------------------------------------------------------
                                         RESPONSIVE WEB
 ----------------------------------------------------------------------------------------- */
@@ -714,9 +1008,6 @@ body .add-new-question-window div .notification-message form ul li button {
     height: 40px;
     margin-top: 10px;
     margin-left: 0;
-  }
-  body main .main-foro-content article .answer-main-content {
-    padding: 20px 0 0 0;
   }
   body main .main-foro-content article .active-notifications-bell div .notification-message {
     max-height: 200px;
