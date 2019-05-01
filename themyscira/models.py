@@ -19,6 +19,7 @@ class Timestamp(models.Model):
 class Video(models.Model):
     url = models.CharField(max_length=100)
     tags = ArrayField(models.CharField(max_length=30), blank=True)
+    title = models.CharField(max_length=100)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
     timestamp = models.ForeignKey(Timestamp, on_delete=models.CASCADE)
 

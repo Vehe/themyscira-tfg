@@ -15,12 +15,27 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+"""
+    Se ejecuta la siguiente función cuando se entra en el apartado de search/, para ver los videos.
+"""
 def search(request):
+
     template = loader.get_template('themyscira/search.html')
-    context = {
-        'test': 'teeeestttt',
-    }
-    return HttpResponse(template.render(context, request))
+
+    # Seleccionamos todos los datos de los videos que tenemos asi como sus autores y timestamps correspondientes
+    data = []
+    for video in Video.objects.all():
+        v = {}
+        tmp = {}
+        v['video'] = video
+        v['autor'] = Autor.objects.get(pk=video.autor_id)
+        t = Timestamp.objects.get(pk=video.timestamp_id)
+        tmp = dict(zip(t.time,t.data))
+        v['timestamp'] = tmp
+        data.append(v)
+
+    return HttpResponse(template.render({'videos':data,}, request))
 
 def forum(request):
     preguntas = Question.objects.all()

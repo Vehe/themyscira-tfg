@@ -7,6 +7,7 @@ html, body {
 
 body {
   padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 body main {
@@ -17,7 +18,7 @@ body main {
 }
 
 body main .main-content article {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   background-color: whitesmoke;
   border: 1px solid #d1d5da;
   border-radius: 5px;
@@ -72,6 +73,10 @@ body main .main-content article .article-content .a-video-info .a-video-info-soc
 
 body main .main-content article .article-content .a-video-info .a-video-info-social a .azul {
   color: #00acee;
+}
+
+body main .main-content article .article-content .a-video-info .a-video-info-social a .morado {
+  color: #6441a5;
 }
 
 body main .main-content article .article-content .a-video-info .a-video-info-marks {
@@ -179,4 +184,3 @@ body main .main-content article .article-video-tags .tags ol li {
     left: 20px !important;
   }
 }
-/*# sourceMappingURL=search.css.map */

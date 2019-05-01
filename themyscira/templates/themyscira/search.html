@@ -9,133 +9,65 @@
     <link rel="stylesheet" href="{% static 'themyscira/css/search.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="{% static 'themyscira/js/search.js' %}"></script>
-    <title>Document</title>
+    <title>Videos</title>
 </head>
 <body>
     <main>
         <div></div>
         <div class="main-content">
-
-            <article>
-                <div class="article-content">
-                    <div class="a-video-embed">
-                        <iframe 
-                            src="https://www.youtube.com/embed/B0bziEVHyqg" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="a-video-info">
-                        <span class="a-video-info-title">What is OpenShift?</span>
-                        <div class="a-video-info-social">
-                            <a href="#"><i class="fab fa-youtube rojo"></i></a>
-                            <a href="#"><i class="fab fa-github negro"></i></a>
+	        {% for v in videos %}
+       	        <article>
+                    <div class="article-content">
+                        <div class="a-video-embed">
+                            <iframe 
+                                src="{{ v.video.url }}" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                        <div class="a-video-info-marks">
+                        <div class="a-video-info">
+                            <span class="a-video-info-title">{{ v.video.title }}</span>
+                            <div class="a-video-info-social">
+                      
+                                {% if v.autor.youtube != '' %}
+                                    <a href="{{ v.autor.youtube }}"><i class="fab fa-youtube rojo"></i></a>
+                                {% endif %}
+                            
+                                {% if v.autor.twitter != '' %}
+                                    <a href="{{ v.autor.twitter }}"><i class="fab fa-twitter azul"></i></a>
+                                {% endif %}
+
+                                {% if v.autor.github != '' %}
+                                    <a href="{{ v.autor.github }}"><i class="fab fa-github negro"></i></a>
+                                {% endif %}
+                                
+                                {% if v.autor.twitch != '' %}
+                                    <a href="{{ v.autor.twitch }}"><i class="fab fa-twitch morado"></i></a>
+                                {% endif %}
+
+                            </div>
+                            <div class="a-video-info-marks">
+                                <ol>
+                                    {% for key, val in v.timestamp.items %}
+                                        <li data-timestamp-yt="{{ key }}"><i class="far fa-clock"></i>{{ val }}</li>
+                                    {% endfor %}
+                                </ol>
+                            </div>
+                            <button id="show-tags">TAGS</button>
+                        </div>
+                    </div>
+                    <div class="article-video-tags">
+                        <div class="tags">
                             <ol>
-                                <li><i class="far fa-clock"></i>Visual Studio</li>
-                                <li><i class="far fa-clock"></i>Binary Ninja</li>
-                                <li><i class="far fa-clock"></i>JavaScript</li>
-                                <li><i class="far fa-clock"></i>Nmap</li>
-                                <li><i class="far fa-clock"></i>Django admin</li>
+                                {% for tag in v.video.tags %}
+                                    <li># {{ tag }}</li>
+                                {% endfor %}
                             </ol>
                         </div>
-                        <button id="show-tags">TAGS</button>
                     </div>
-                </div>
-                <div class="article-video-tags">
-                    <div class="tags">
-                        <ol>
-                            <li># TEST</li>
-                            <li># PRUEBA</li>
-                            <li># HOLA</li>
-                            <li># DJANGO</li>
-                            <li># TESTING</li>
-                        </ol>
-                    </div>
-                </div>
-            </article>
-
-            <article>
-                <div class="article-content">
-                    <div class="a-video-embed">
-                        <iframe 
-                            src="https://www.youtube.com/embed/yFPYGeKwmpk" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="a-video-info">
-                        <span class="a-video-info-title">OpenShift Walkthrough</span>
-                        <div class="a-video-info-social">
-                            <a href="#"><i class="fab fa-youtube rojo"></i></a>
-                            <a href="#"><i class="fab fa-github negro"></i></a>
-                            <a href="#"><i class="fab fa-twitter azul"></i></a>
-                        </div>
-                        <div class="a-video-info-marks">
-                            <ol>
-                                <li><i class="far fa-clock"></i>Smite</li>
-                                <li><i class="far fa-clock"></i>Dropbox</li>
-                                <li><i class="far fa-clock"></i>C++</li>
-                                <li><i class="far fa-clock"></i>Nmap</li>
-                            </ol>
-                        </div>
-                        <button id="show-tags">TAGS</button>
-                    </div>
-                </div>
-                <div class="article-video-tags">
-                    <div class="tags">
-                        <ol>
-                            <li># OTRA</li>
-                            <li># PRUEBA</li>
-                            <li># MÁS</li>
-                            <li># PARA</li>
-                            <li># WEB</li>
-                        </ol>
-                    </div>
-                </div>
-            </article>
-
-            <article>
-                <div class="article-content">
-                    <div class="a-video-embed">
-                        <iframe 
-                            src="https://www.youtube.com/embed/D_Lj0rObunI" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="a-video-info">
-                        <span class="a-video-info-title">About - Red Hat OpenShift</span>
-                        <div class="a-video-info-social">
-                            <a href="#"><i class="fab fa-youtube rojo"></i></a>
-                            <a href="#"><i class="fab fa-twitter azul"></i></a>
-                        </div>
-                        <div class="a-video-info-marks">
-                            <ol>
-                                <li><i class="far fa-clock"></i>Google Console</li>
-                                <li><i class="far fa-clock"></i>HTML</li>
-                                <li><i class="far fa-clock"></i>Bootstrap</li>
-                                <li><i class="far fa-clock"></i>Kubernetes</li>
-                            </ol>
-                        </div>
-                        <button id="show-tags">TAGS</button>
-                    </div>
-                </div>
-                <div class="article-video-tags">
-                    <div class="tags">
-                        <ol>
-                            <li># ONE</li>
-                            <li># MORE</li>
-                            <li># TEST</li>
-                        </ol>
-                    </div>
-                </div>
-            </article>
-
+                </article>
+	        {% endfor %}
         </div>
         <div></div>
     </main>
