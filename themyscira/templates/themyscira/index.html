@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'themyscira/css/main.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="{% static 'themyscira/js/main.js' %}"></script>
+    <script src="{% static 'themyscira/js/responsive.js' %}"></script>
     <title>Themyscira</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
     <header>
         <div class="h-navbar">
             <div class="h-navbar-logo">
-		    <a href="index.html"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
+		    <a href="/"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
             </div>
             <div class="h-navbar-search">
                 <form action="#">
@@ -33,9 +34,9 @@
                 </div>
                 <div class="nav-non-responsive">
                     <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Search</a></li>
-                        <li><a href="#">Foro</a></li>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/search/">Search</a></li>
+                        <li><a href="/foro/">Foro</a></li>
                         <li><a href="#">Contacto</a></li>
                     </ul>
                 </div>

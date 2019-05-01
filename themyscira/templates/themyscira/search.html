@@ -9,9 +9,50 @@
     <link rel="stylesheet" href="{% static 'themyscira/css/search.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="{% static 'themyscira/js/search.js' %}"></script>
+    <script src="{% static 'themyscira/js/responsive.js' %}"></script>
     <title>Videos</title>
 </head>
 <body>
+    <header>
+        <div class="h-navbar">
+            <div class="h-navbar-logo">
+                <a href="/"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
+            </div>
+            <div class="h-navbar-search">
+                <form action="#">
+                    <input type="text" placeholder="Buscar ...">
+                    <div class="lupa-search-bar">
+                        <img src="{% static 'themyscira/img/busqueda.svg' %}" alt="Glass Image">
+                    </div>
+                </form>
+            </div>
+            <nav>
+                <div class="nav-responsive">
+                    <i class="fas fa-bars" id="responsive-ico"></i>
+                </div>
+                <div class="nav-non-responsive">
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/search/">Search</a></li>
+                        <li><a href="/foro/">Foro</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="polygon-container">
+            <div class="polygon-svg-decoration">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1280 70" enable-background="new 0 0 1280 70" xml:space="preserve" preserveAspectRatio="none">
+                    <polygon points="1280,70 0,70 0,0 "/>
+                </svg>
+                <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 1280 70" enable-background="new 0 0 1280 70" xml:space="preserve" preserveAspectRatio="none">
+                    <polygon points="1280,70 0,70 0,0 "/>
+                </svg>
+            </div>
+        </div> 
+    </header>
     <main>
         <div></div>
         <div class="main-content">
