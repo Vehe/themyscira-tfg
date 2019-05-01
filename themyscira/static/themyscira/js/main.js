@@ -1,11 +1,8 @@
-let has_been_added = false;
-
 window.addEventListener('load', function() {
 
-    const lista_elementos_nav = document.querySelector( '.nav-non-responsive ul' );
     const non_responsive_navigation = document.querySelector( '.nav-non-responsive' );
     const responsive_ico = document.getElementById( 'responsive-ico' );
-    
+
     /**
      * Crea el evento para la pulsación del botón del modo responsive.
      */
@@ -24,14 +21,10 @@ window.addEventListener('load', function() {
      */
     window.addEventListener('resize', function() {
 
-        // Se ejecuta si se entra en modo responsive.
-        if(document.body.clientWidth <= 888 && has_been_added == false) insert_search_element( lista_elementos_nav );
-
         // Se ejecuta al hacer la ventana más grande que el modo responsive.
-        if(document.body.clientWidth > 888 && has_been_added == true) {
+        if(document.body.clientWidth > 888) {
             non_responsive_navigation.removeAttribute( 'style' );
             responsive_ico.className = "fa fa-bars";
-            has_been_added = false;
         }
 
     });
