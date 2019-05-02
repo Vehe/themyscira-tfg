@@ -43,4 +43,4 @@ class Response(models.Model):
     data = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.question
+        return self.data

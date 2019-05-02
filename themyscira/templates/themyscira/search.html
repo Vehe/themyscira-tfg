@@ -60,12 +60,7 @@
        	        <article>
                     <div class="article-content">
                         <div class="a-video-embed">
-                            <iframe 
-                                src="{{ v.video.url }}" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
+                            <div data-iframe-yt="" id="{{ v.video.url }}"></div>
                         </div>
                         <div class="a-video-info">
                             <span class="a-video-info-title">{{ v.video.title }}</span>
@@ -91,7 +86,7 @@
                             <div class="a-video-info-marks">
                                 <ol>
                                     {% for key, val in v.timestamp.items %}
-                                        <li data-timestamp-yt="{{ key }}"><i class="far fa-clock"></i>{{ val }}</li>
+                                        <li data-timestamp-yt="{{ key }}" title="Ir a"><i class="far fa-clock"></i>{{ val }}</li>
                                     {% endfor %}
                                 </ol>
                             </div>
@@ -112,5 +107,6 @@
         </div>
         <div></div>
     </main>
+    <script src="{% static 'themyscira/js/yt-api.js' %}"></script>
 </body>
 </html>

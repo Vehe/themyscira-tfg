@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from .models import *
 
+# Importa el fichero tools.py que contiene funciones de ayuda.
 import sys
 sys.path.insert(0, '/tfg/tools')
 from tools import *

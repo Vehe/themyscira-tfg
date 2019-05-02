@@ -66,18 +66,18 @@
                         </button>
                         <div class="question-main-content">
                             <div class="question-title">
-				    <img src="{% static "themyscira/img/user"|add:pregunta.generate_random|add:".jpg" %}" alt="Imagen de usuario">
+                    <img src="{% static "themyscira/img/user"|add:pregunta.generate_random|add:".jpg" %}" alt="Imagen de usuario">
                                 <span>{{ pregunta.title }}</span>
                             </div>
                             <p>{{ pregunta.data }}</p>
                             <div class="question-answer-user">
                                 <form action="/foro/addresponse/" method="post">
-				    {% csrf_token %}
+                    {% csrf_token %}
                                     <textarea name="text-answer-user" id="text-answer-user" placeholder="Dar una respuesta ..."></textarea>
                                     <ol>
                                         <li><input type="text" placeholder="Mi email ..." name="email-answer-user"></li>
                                         <li><button>Responder!</button></li>
-					<input type="hidden" name="q-id" value="{{ pregunta.id }}"></input>
+                    <input type="hidden" name="q-id" value="{{ pregunta.id }}"></input>
                                     </ol>
                                 </form>
                             </div>
@@ -104,11 +104,11 @@
                                     <div>
                                         <span>Activar notificaciones!</span>
                                         <form action="/foro/getnotify/" method="post">
-					    {% csrf_token %}
+                        {% csrf_token %}
                                             <ol>
                                                 <li><input type="text" placeholder="Email ..." name="n-email"></li>
                                                 <li><button id="activar-notificaciones-question">Activar!</button></li>
-						<input type="hidden" name="n-question" value="{{ pregunta.id }}">
+                        <input type="hidden" name="n-question" value="{{ pregunta.id }}">
                                             </ol>
                                         </form>
                                     </div>
@@ -131,7 +131,7 @@
             <div class="opacity-bg-message"></div>
             <div class="notification-message">
                 <form action="/foro/addquestion/">
-		    {% csrf_token %}	
+            {% csrf_token %}    
                     <ul>
                         <li>
                             <label for="titulo-pregunta-input">Titulo</label>
@@ -154,18 +154,18 @@
         </div>
     </div>
     {% if request.session.has_message %}
-    	<div class="notification-box-user" id="{{ request.session.has_message.error }}">
-	    <div class="dot"></div>
-	    <div class="dot two"></div>
-	    <div class="{{ request.session.has_message.face }}">
-	        <div class="eye"></div>
-		<div class="eye right"></div>
-		<div class="mouth {{ request.session.has_message.status }}"></div>
-	    </div>
-	    <div class="shadow {{ request.session.has_message.movement }}"></div>
-	    <div class="message"><h1 class="alert">{{ request.session.has_message.error_text }}</h1><p>{{ request.session.has_message.msg }}</p></div>
-	    <button class="button-box"><h1 class="{{ request.session.has_message.color }}">cerrar</h1></button>
-	</div>
+        <div class="notification-box-user" id="{{ request.session.has_message.error }}">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="{{ request.session.has_message.face }}">
+            <div class="eye"></div>
+        <div class="eye right"></div>
+        <div class="mouth {{ request.session.has_message.status }}"></div>
+        </div>
+        <div class="shadow {{ request.session.has_message.movement }}"></div>
+        <div class="message"><h1 class="alert">{{ request.session.has_message.error_text }}</h1><p>{{ request.session.has_message.msg }}</p></div>
+        <button class="button-box"><h1 class="{{ request.session.has_message.color }}">cerrar</h1></button>
+    </div>
     {% endif %}
 </body>
 </html>
