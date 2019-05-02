@@ -29,8 +29,8 @@ class Video(models.Model):
 class Question(models.Model):
     title = models.CharField(max_length=200)
     data = models.CharField(max_length=1000)
-    tags = ArrayField(models.CharField(max_length=30), blank=True)
-    notificacion_email = ArrayField(models.CharField(max_length=100), blank=True)
+    tags = ArrayField(models.CharField(max_length=30), blank=True, null=True)
+    notificacion_email = ArrayField(models.CharField(max_length=100), blank=True, null=True)
 
     def generate_random(self):
         return str(random.randint(1,6))

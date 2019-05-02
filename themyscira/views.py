@@ -4,6 +4,27 @@ from django.template import loader
 from django.urls import reverse
 from .models import *
 
+# Diferentes declaraciones para la notificación al usuario según el resultado.
+good_response = {
+    'error': 'success-box',
+    'face': 'face',
+    'status': 'happy',
+    'movement': 'scale',
+    'error_text': 'Success!',
+    'msg': 'yay, todo ha salido bien.',
+    'color': 'green'
+}
+
+bad_response = {
+    'error': 'error-box',
+    'face': 'face2',
+    'status': 'sad',
+    'movement': 'move',
+    'error_text': 'Error!',
+    'msg': 'oh no, algo ha ido mal.',
+    'color': 'red'
+}
+
 # Importa el fichero tools.py que contiene funciones de ayuda.
 import sys
 sys.path.insert(0, '/tfg/tools')
@@ -85,28 +106,7 @@ def getnotify(request):
 """
 def addresponse(request):
 
-    if 'has_message' in request.session:
-        del request.session['has_message']
-
-    good_response = {
-        'error': 'success-box',
-        'face': 'face',
-        'status': 'happy',
-        'movement': 'scale',
-        'error_text': 'Success!',
-        'msg': 'yay, todo ha salido bien.',
-        'color': 'green'
-    }
-
-    bad_response = {
-        'error': 'error-box',
-        'face': 'face2',
-        'status': 'sad',
-        'movement': 'move',
-        'error_text': 'Error!',
-        'msg': 'oh no, algo ha ido mal.',
-        'color': 'red'
-    }
+    request.session.set_expiry(2)
 
     # En caso de que no sea post, se le envia fuera
     if request.method != 'POST':
@@ -143,3 +143,24 @@ def addresponse(request):
     request.session['has_message'] = good_response
 
     return HttpResponseRedirect(reverse('themyscira:foro'))
+
+
+# TODO: Securizar el input el usuario en el form
+def addquestion(request):
+
+    request.session.set_expiry(2)
+
+    # En caso de que no sea post, se le envia fuera
+    if request.method != 'POST':
+        request.session['has_message'] = bad_response
+        return HttpResponseRedirect(reverse('themyscira:foro'))
+
+    q_title = request.POST.get('titulo-pregunta')
+    q_text = request.POST.get('pregunta-text')
+
+    q = Question(title=q_title, data=q_text, tags=[], notificacion_email=[])
+    q.save()
+
+    request.session['has_message'] = good_response
+    return HttpResponseRedirect(reverse('themyscira:foro'))
+

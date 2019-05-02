@@ -130,8 +130,8 @@
         <div>
             <div class="opacity-bg-message"></div>
             <div class="notification-message">
-                <form action="/foro/addquestion/">
-            {% csrf_token %}    
+                <form action="/foro/addquestion/" method="POST">
+                {% csrf_token %}    
                     <ul>
                         <li>
                             <label for="titulo-pregunta-input">Titulo</label>

@@ -9,4 +9,5 @@ urlpatterns = [
     path('foro/', views.forum, name='foro'),
     path('foro/getnotify/', views.getnotify, name='getnotify'),
     path('foro/addresponse/', views.addresponse, name='addresponse'),
+    path('foro/addquestion/', views.addquestion, name='addquestion'),
 ]
