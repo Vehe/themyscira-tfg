@@ -1,5 +1,7 @@
 Django==2.2
+django-extensions==2.1.6
 psycopg2==2.8.2
 pytz==2019.1
+six==1.12.0
 sqlparse==0.3.0
 validate-email==1.3
