@@ -60,11 +60,14 @@ def send_mail_to_notification_list(lista):
     message.attach(part1)
     message.attach(part2)
     
-    # Conecta con la cuenta de GMAIL y se loguea.
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(sender_email, password)
+    try:
+        # Conecta con la cuenta de GMAIL y se loguea.
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, password)
 
-        # Por cada dirección de correo, envia un mail
-        for correo in lista:
-            message["To"] = correo
-            server.sendmail(sender_email, correo, message.as_string())
+            # Por cada dirección de correo, envia un mail
+            for correo in lista:
+                message["To"] = correo
+                server.sendmail(sender_email, correo, message.as_string())
+    except:
+        return False
