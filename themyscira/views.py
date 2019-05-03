@@ -27,7 +27,7 @@ bad_response = {
 
 # Importa el fichero tools.py que contiene funciones de ayuda.
 import sys
-sys.path.insert(0, '/tfg/tools')
+sys.path.insert(0, '/tfg/scripts')
 from tools import *
 
 def index(request):
