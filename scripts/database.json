@@ -1,0 +1,256 @@
+{
+  "questions": [
+    {
+      "title": "¿Problema tipo de dato en Java?",
+      "data": "Tengo una duda e inquietud bastante grande. Estaba haciendo una operación en java y estaba esperando un resultado positivo, debido a que todos los números eran positivos. Pero el resultado me devolvió un número negativo. Y el resultado a esto fue -1446640074. Alguien por favor que me explique que esta pasando aquí. Lo hice con la calculadora, con python, con javascript y con todas las anteriores me sirvió. Pero con Java no.",
+      "tags": [
+        "Java"
+      ],
+      "notificacion_email": [
+        "themyscira04@yopmail.com",
+        "themyscira05@yopmail.com"
+      ],
+      "responses": [
+        "El tipo de dato int en java es un entero de 32 bits complemento a dos. Su valor mínimo es -2,147,483,648 y el máximo 2,147,483,647 (inclusive). Tu respuesta sobre pasa ese limite. te recomiendo usar long, y tu función puede ser x=(n1*n2)+n3"
+      ]
+    },
+    {
+      "title": "¿Cómo evitar la inyección SQL en PHP?",
+      "data": "Las sentencias dinámicas son sentencias SQL que se crean como cadenas de texto (strings) y en las que se insertan/concatenan valores obtenidos de alguna fuente (normalmente proveniente del usuario), lo que puede hacer que sean vulnerables a inyección SQL si no se sanean las entradas. Como puedo evitarlo?.",
+      "tags": [
+        "SQL",
+        "PHP"
+      ],
+      "notificacion_email": [
+        "themyscira00@yopmail.com"
+      ],
+      "responses": [
+        "Aunque se podrían sanear las entradas usando métodos como mysqli_real_escape_string, es más recomendable la utilización de sentencias preparadas o parametrizadas. Las sentencias preparadas te permitirán ejecutar la misma sentencia con gran eficiencia.En PHP, tienes dos alternativas principales: PDO y MySQLi. Hay varias diferencias entre ambas, pero la principal es que PDO se puede usar con diferentes tipos de base de datos (dependiendo del driver utilizado) mientras que MySQLi es exclusivamente para bases de datos MySQL. Es por ello que recomendaría PDO sobre MySQLi.",
+        "Es recomendable adicionar un enmascaramiento a la url y crear urls amigables que realizan 2 funciones: 1- ocultan parámetros que se estén enviando por get, y también ayudan al usuario a ver más clara la información."
+      ]
+    },
+    {
+      "title": "Consulta MySQL por dia de la semana",
+      "data": "Estoy haiendo una web, donde introduzco en una tabla, con el dia de la semana que se hace el insert, unos datos, y luego, tengo una funcion, que saco el numero de la semana del año que es. Quiero hacer una consulta, introduciendo el numero de la semana, (que siempre va a ser la semana en curso y esta guardado en una variable) y que me haga la consulta de lunes a domingo, es decir, hoy 29-4 es la semana 18, me gustaria hacer una consulta del 29/4/19 --- 6/5/19. Existe alguna forma de hacer una query simple, o primero obtengo ese rango de dias que hay en el numero de la semana y luego hago una select between dia-dia? Gracias por la ayuda, muchas veces le doy muchas vueltas a una query muy simple.",
+      "tags": [
+        "MySQL"
+      ],
+      "notificacion_email": [
+        "themyscira01@yopmail.com",
+        "themyscira02@yopmail.com",
+        "themyscira03@yopmail.com"
+      ],
+      "responses": []
+    },
+    {
+      "title": "¿Cuál es la diferencia entre un inner y un outer join?",
+      "data": "¿Cuál es la diferencia entre un inner y un outer join? Y ¿cuál es la función de los modificadores left, right o full?",
+      "tags": [
+        "MySQL"
+      ],
+      "notificacion_email": [
+        "themyscira01@yopmail.com",
+        "themyscira04@yopmail.com"
+      ],
+      "responses": [
+        "Un inner join utilizando cualquiera de las sintaxis de consulta equivalente te entrega la intersección de ambas tablas, es decir, las filas que ambas tablas tienen en común."
+      ]
+    }
+  ],
+  "autores": [
+    {
+      "name": "LiveOverflow",
+      "youtube": "https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w",
+      "twitter": "https://twitter.com/LiveOverflow",
+      "github": "https://github.com/LiveOverflow",
+      "twitch": "https://www.twitch.tv/liveoverflow",
+      "videos": [
+        {
+          "url": "yq_P3dzGiK4",
+          "title": "Fuzzing Browsers for weird XSS Vectors",
+          "tags": [
+            "fuzzing",
+            "xss",
+            "web",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "60",
+              "160",
+              "310"
+            ],
+            "data": [
+              "Chrome Debugger",
+              "Firefox",
+              "JavaScript"
+            ]
+          }
+        },
+        {
+          "url": "nNBktKw9Is4",
+          "title": "Hardware Wallet Hack: Ledger Nano S - f00dbabe",
+          "tags": [
+            "ledger",
+            "hardware",
+            "security",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "20",
+              "10",
+              "840"
+            ],
+            "data": [
+              "Soldador",
+              "Visual Studio Code",
+              "Binary Ninja"
+            ]
+          }
+        },
+        {
+          "url": "PQPO5Z4lVTU",
+          "title": "Analyzing the Blocky Logic Puzzle - Pwn Adventure 3",
+          "tags": [
+            "ctf",
+            "pwnadventure",
+            "security",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "200",
+              "420",
+              "600"
+            ],
+            "data": [
+              "Python",
+              "C#",
+              "Binary Ninja"
+            ]
+          }
+        },
+        {
+          "url": "2TofunAI6fU",
+          "title": "The Secret step-by-step Guide to learn Hacking",
+          "tags": [
+            "guide",
+            "tutorial",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "270",
+              "380"
+            ],
+            "data": [
+              "Paint",
+              "Chrome"
+            ]
+          }
+        },
+        {
+          "url": "MpeaSNERwQA",
+          "title": "Lets play a game: what is the deadly bug here?",
+          "tags": [
+            "php",
+            "bug",
+            "codeaudit",
+            "web",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "145",
+              "600",
+              "640"
+            ],
+            "data": [
+              "Sublime Text 3",
+              "PHP Shell",
+              "Chrome"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "STOK",
+      "youtube": "https://www.youtube.com/channel/UCQN2DsjnYH60SFBIA6IkNwg",
+      "twitter": "https://twitter.com/stokfredrik",
+      "github": "",
+      "twitch": "",
+      "videos": [
+        {
+          "url": "vDv0PFQMdmQ",
+          "title": "Sometimes you catch the bug. Sometimes the bug catches you.. (h1-415)",
+          "tags": [
+            "security",
+            "vlog",
+            "pentesting",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "86",
+              "765",
+              "225",
+              "502"
+            ],
+            "data": [
+              "Ubuntu",
+              "IDA",
+              "Visual Studio Code",
+              "Ghidra"
+            ]
+          }
+        },
+        {
+          "url": "CU9Iafc-Igs",
+          "title": "HOW TO GET STARTED IN BUG BOUNTY (9x PRO TIPS)",
+          "tags": [
+            "security",
+            "hardware",
+            "wallet",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "15",
+              "77",
+              "225"
+            ],
+            "data": [
+              "Fedora",
+              "Binary Ninja",
+              "NodeJs"
+            ]
+          }
+        },
+        {
+          "url": "pEaNPN2KL_w",
+          "title": "OUT FOR BLOOD! (hacking Dropbox Hellosign Google Facebook)",
+          "tags": [
+            "vlog",
+            "dropbox",
+            "google",
+            "hacking"
+          ],
+          "timestamp": {
+            "time": [
+              "60",
+              "120",
+              "600"
+            ],
+            "data": [
+              "nmap",
+              "GDB",
+              "Python"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
