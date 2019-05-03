@@ -42,3 +42,60 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 Podemos ver que el contenedor se está ejecutando correctamente, por lo que si abirimos nuestro navegador y vamos a `http://localhost/` deberíamos ver la página principal de la web.
+
+## Acceder a la base de datos por comando
+
+Si tenemos desplegada nuestra copia local del proyecto siguiendo la explicación anterior, debemos tener un contenedor llamado `themyscira`, asi que partiremos de esta base.
+
+Podemos acceder a la base de datos que usa la web a través de comando, para ello, primero necesitamos una shell en el contenedor, ejecutaremos el siguiente comando:
+```sh
+$ docker exec -it themyscira bash
+```
+
+Ahora deberíamos estar dentro del container en una shell como usuario root, para acceder a la base de datos, cambiaremos al usuario `postgres`, así que ejecutamos:
+```sh
+# su postgres
+```
+
+Ejecutamos sobre la shell del usuario `postgres` lo siguiente:
+```sh
+$ psql -d themyscira
+```
+
+De esta manera entramos a la shell que nos proporciona `POSTGRESQL` directamente en la base de datos `themyscira`, que es la que usa nuestra web.
+Para ver las tablas que tenemos, ejecutamos lo siguiente:
+```
+themyscira=# \dt
+```
+
+Deberíamos ver un resultado igual que este:
+```
+                   List of relations
+ Schema |            Name            | Type  |  Owner
+--------+----------------------------+-------+----------
+ public | auth_group                 | table | postgres
+ public | auth_group_permissions     | table | postgres
+ public | auth_permission            | table | postgres
+ public | auth_user                  | table | postgres
+ public | auth_user_groups           | table | postgres
+ public | auth_user_user_permissions | table | postgres
+ public | django_admin_log           | table | postgres
+ public | django_content_type        | table | postgres
+ public | django_migrations          | table | postgres
+ public | django_session             | table | postgres
+ public | themyscira_autor           | table | postgres
+ public | themyscira_question        | table | postgres
+ public | themyscira_response        | table | postgres
+ public | themyscira_timestamp       | table | postgres
+ public | themyscira_video           | table | postgres
+(15 rows)
+```
+
+El hecho de tener esta shell en el contenedor no influye en el servidor web o la base de datos, estos siguen funcionando en el background.
+
+Podemos ejecutar sentencias como:
+```sh
+themyscira=# SELECT * FROM themyscira_video;
+```
+
+Para salir de la shell de `POSTGRESQL` escribimos `\q`, y posteriormente `exit` hasta salir del shell del contenedor.
