@@ -19,8 +19,8 @@
                 <a href="/"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
             </div>
             <div class="h-navbar-search">
-                <form action="#">
-                    <input type="text" placeholder="Buscar ...">
+                <form action="/search/" method="get">
+                    <input type="text" placeholder="Buscar ..." name="q">
                     <div class="lupa-search-bar">
                         <img src="{% static 'themyscira/img/busqueda.svg' %}" alt="Glass Image">
                     </div>

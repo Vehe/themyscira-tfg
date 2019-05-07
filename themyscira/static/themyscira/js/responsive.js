@@ -29,4 +29,13 @@ window.addEventListener('load', function() {
 
     });
 
-})
+    /**
+     * Crea el evento para enviar el form de la barra de búsqueda al hacer clic en la lupa.
+     */
+    document.querySelector('.lupa-search-bar').addEventListener('click', function() {
+
+        this.parentElement.submit();
+
+    });
+
+});

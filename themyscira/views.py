@@ -1,3 +1,4 @@
+from django.contrib.postgres.search import SearchVector
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -40,25 +41,55 @@ def index(request):
 
 """
     Se ejecuta la siguiente función cuando se entra en el apartado de search/, para ver los videos.
+    TODO: http://localhost/search/?q=how+to+xss+a+nano+wallet Bugg repited video
 """
 def search(request):
 
     template = loader.get_template('themyscira/search.html')
-
-    # Seleccionamos todos los datos de los videos que tenemos asi como sus autores y timestamps correspondientes
+    query = request.GET.get('q','')
     data = []
-    for video in Video.objects.all():
-        v = {}
-        tmp = {}
-        v['video'] = video
-        v['autor'] = Autor.objects.get(pk=video.autor_id)
-        t = Timestamp.objects.get(pk=video.timestamp_id)
-        tmp = dict(zip(t.time,t.data))
-        v['timestamp'] = tmp
-        data.append(v)
 
-    return HttpResponse(template.render({'videos':data,}, request))
+    # En caso de que usemos la barra de búsqueda, entramos en esta parte, sino, muestra todos los videos.
+    if query != '':
+        end = []
+        query = query.split()
 
+        # Pasa la query por el algorítmo de filtrado, la cual busca por palabras en el title y tags del video.
+        for term in query:
+            end.append(Video.objects.annotate(search=SearchVector('title','tags'),).filter(search=term))
+
+        # Agrupa todos los videos que se han encontrado tras el filtrado para ser enviados a la template.
+        for queryset in end:
+            for video in queryset:
+                v = {}
+                tmp = {}
+                v['video'] = video
+                v['autor'] = Autor.objects.get(pk=video.autor_id)
+                t = Timestamp.objects.get(pk=video.timestamp_id)
+                tmp = dict(zip(t.time,t.data))
+                v['timestamp'] = tmp
+                data.append(v)
+
+        return HttpResponse(template.render({'videos':data,}, request))
+
+    else:
+
+        # Seleccionamos todos los datos de los videos que tenemos asi como sus autores y timestamps correspondientes
+        for video in Video.objects.all():
+            v = {}
+            tmp = {}
+            v['video'] = video
+            v['autor'] = Autor.objects.get(pk=video.autor_id)
+            t = Timestamp.objects.get(pk=video.timestamp_id)
+            tmp = dict(zip(t.time,t.data))
+            v['timestamp'] = tmp
+            data.append(v)
+
+        return HttpResponse(template.render({'videos':data,}, request))
+
+"""
+    Se ejecuta cuando vamos a la página de foro/ muestra todas las preguntas y respuestas que tenemos.
+"""
 def forum(request):
     preguntas = Question.objects.all()
     respuestas = Response.objects.all()
