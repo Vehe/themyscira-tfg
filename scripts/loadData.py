@@ -1,5 +1,9 @@
 import json
 from themyscira.models import *
+from django.contrib.auth.models import User
+
+# Crear el usuario administrador con las credenciales admin:admin
+User.objects.create_superuser('admin', 'admin@example.com', 'admin')
 
 # Abre el fichero JSON que contiene toda la base de datos para estos ser insertados en sus respecitvas tablas.
 with open('/tfg/scripts/database.json') as json_file:

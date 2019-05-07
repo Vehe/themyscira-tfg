@@ -24,7 +24,7 @@ class Video(models.Model):
     timestamp = models.ForeignKey(Timestamp, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.url
+        return self.title
 
 class Question(models.Model):
     title = models.CharField(max_length=200)
