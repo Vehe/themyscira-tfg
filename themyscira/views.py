@@ -41,7 +41,6 @@ def index(request):
 
 """
     Se ejecuta la siguiente función cuando se entra en el apartado de search/, para ver los videos.
-    TODO: http://localhost/search/?q=how+to+xss+a+nano+wallet Bugg repited video
 """
 def search(request):
 
@@ -52,6 +51,7 @@ def search(request):
     # En caso de que usemos la barra de búsqueda, entramos en esta parte, sino, muestra todos los videos.
     if query != '':
         end = []
+        final = []
         query = query.split()
 
         # Pasa la query por el algorítmo de filtrado, la cual busca por palabras en el title y tags del video.
@@ -70,7 +70,12 @@ def search(request):
                 v['timestamp'] = tmp
                 data.append(v)
 
-        return HttpResponse(template.render({'videos':data,}, request))
+        # Elimina los elementos duplicados en caso de estarlos, por lo que no salen dos videos iguales.
+        for element in data:
+            if element not in final:
+                final.append(element)
+
+        return HttpResponse(template.render({'videos':final,}, request))
 
     else:
 
