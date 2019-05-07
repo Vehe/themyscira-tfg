@@ -108,13 +108,15 @@ def forum(request):
 
 """
     Se llama a la siguiente función cuando se envia el formaulario para recibir notificaciones sobre una pregunta.
-    TODO: Configurar los argumentos que se devuelven al hacer el reverse, fixear el codigo 400.
 """
 def getnotify(request):
 
+    request.session.set_expiry(2)
+
     # En caso de que no sea post, se le envia fuera
     if request.method != 'POST':
-        return HttpResponse(status=400)
+        request.session['has_message'] = bad_response
+        return HttpResponseRedirect(reverse('themyscira:foro'))
 
     # Se guardan los datos que envia el form
     user_email = request.POST.get('n-email')
@@ -122,17 +124,21 @@ def getnotify(request):
 
     # Si los datos recibidos no son válidos, se le envia fuera
     if not check_correct_data(user_email, question):
-        return HttpResponse(status=400)
+        request.session['has_message'] = bad_response
+        return HttpResponseRedirect(reverse('themyscira:foro'))
 
     # Comprobamos si la pregunta que se busca existe realmente
     try:
         q = Question.objects.get(pk=question)
     except:
-        return HttpResponse(status=400)
+        request.session['has_message'] = bad_response
+        return HttpResponseRedirect(reverse('themyscira:foro'))
 
     # En caso de que si exista la pregunta, se le añade el email introducido a la lista en la bd
     q.notificacion_email.append(user_email)
     q.save()
+
+    request.session['has_message'] = good_response
 
     return HttpResponseRedirect(reverse('themyscira:foro'))
 
