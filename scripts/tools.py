@@ -4,6 +4,42 @@ from email.mime.multipart import MIMEMultipart
 from validate_email import validate_email
 import os
 
+# Diferentes declaraciones para la notificación al usuario según el resultado.
+good_response = {
+    'error': 'success-box',
+    'face': 'face',
+    'status': 'happy',
+    'movement': 'scale',
+    'error_text': 'Success!',
+    'msg': 'yay, todo ha salido bien.',
+    'color': 'green'
+}
+
+bad_response = {
+    'error': 'error-box',
+    'face': 'face2',
+    'status': 'sad',
+    'movement': 'move',
+    'error_text': 'Error!',
+    'msg': 'oh no, algo ha ido mal.',
+    'color': 'red'
+}
+
+# Devuelve el texto según el status que se le pasa como parámetro
+def get_notification_text(status, msg=''):
+
+    # Comprobamos si se envía un msg o no
+    if msg is not'':
+        if status:
+            good_response['msg'] = msg
+            return good_response
+        else:
+            bad_response['msg'] = msg
+            return bad_response
+
+    return good_response if status else bad_response
+
+
 # Porfavor hacer esto más seguro
 sender_email = "themyscira.io@gmail.com"
 password = os.environ.get('CORREO_PW')

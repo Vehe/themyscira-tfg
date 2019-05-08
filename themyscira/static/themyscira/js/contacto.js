@@ -33,7 +33,6 @@ window.addEventListener('load', function() {
             card_active.classList.add('hidden');
             card_active = card;
             if(card.classList.contains('hidden')) card.classList.remove('hidden');
-            
 
         });
 
@@ -45,6 +44,26 @@ window.addEventListener('load', function() {
     document.getElementById('go-back').addEventListener('click', () => {
         window.history.back();
     });
+
+    /**
+     * Crea el evento para borrar el cartel de mensaje al usuario el click del botón,
+     * también crea un timeout para que el cartel se vaya automáticamente a los 3s.
+     */
+    $( '.notification-box-user button' ).click(function() {
+
+        $( this ).parent().remove();
+
+    });
+
+    setTimeout(function() {
+
+        $( '.notification-box-user' ).fadeOut(400, function() {
+
+            $( this ).remove();
+
+        });
+
+    }, 3000);
 
 });
 

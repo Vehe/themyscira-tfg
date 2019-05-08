@@ -6,27 +6,6 @@ from django.template import loader
 from django.urls import reverse
 from .models import *
 
-# Diferentes declaraciones para la notificación al usuario según el resultado.
-good_response = {
-    'error': 'success-box',
-    'face': 'face',
-    'status': 'happy',
-    'movement': 'scale',
-    'error_text': 'Success!',
-    'msg': 'yay, todo ha salido bien.',
-    'color': 'green'
-}
-
-bad_response = {
-    'error': 'error-box',
-    'face': 'face2',
-    'status': 'sad',
-    'movement': 'move',
-    'error_text': 'Error!',
-    'msg': 'oh no, algo ha ido mal.',
-    'color': 'red'
-}
-
 # Importa el fichero tools.py que contiene funciones de ayuda.
 import sys
 sys.path.insert(0, '/tfg/scripts')
@@ -39,7 +18,9 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-
+"""
+    Se ejecuta cuando se entra a la sección de contacto en la web.
+"""
 def contacto(request):
     template = loader.get_template('themyscira/contacto.html')
     data = Autor.objects.all()
@@ -48,6 +29,94 @@ def contacto(request):
     }
     return HttpResponse(template.render(context, request))
 
+# TODO: Comprobar los parámetros de entrada del form.
+def addautor(request):
+
+    request.session.set_expiry(2)
+
+    # En caso de que no sea post, se le envia fuera
+    if request.method != 'POST':
+        request.session['has_message'] = get_notification_text(False, 'Buen intento  (ノಠ益ಠ)ノ彡┻━┻')
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # Almacenamos los datos que entran por el form.
+    autor_name = request.POST.get('name','')
+    youtube = request.POST.get('youtube','')
+    twitch = request.POST.get('twitch','')
+    twitter = request.POST.get('twitter','')
+    github = request.POST.get('github','')
+
+    # En caso de no haber nombre, volvemos al contacto
+    if autor_name == '':
+        request.session['has_message'] = get_notification_text(False, 'oh no, parece que olvidaste el nombre.')
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # En caso de que ya exista un usuario con ese nombre, volvemos al contacto.
+    try:
+        a = Autor.objects.get(name=autor_name)
+    except:
+
+        # En caso de que todo haya ido bien, guardamos el autor en la tabla de requests.
+        r = RequestAutor(name=autor_name, twitter=twitter, twitch=twitch, youtube=youtube, github=github)
+        r.save()
+
+        request.session['has_message'] = get_notification_text(True)
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # Si ha llegado aqui, significa que el usuario que ha introducido ya existia, por lo que no se hace nada.
+    request.session['has_message'] = get_notification_text(False, 'oh no, este autor ya existe!')
+    return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+# TODO: Comprobar los parámetros de entrada del form.
+def addvideo(request):
+
+    request.session.set_expiry(2)
+
+    # En caso de que no sea post, se le envia fuera
+    if request.method != 'POST':
+        request.session['has_message'] = get_notification_text(False, 'Buen intento  ( ^c^n    ^{^j   ) ^c^n    ^t  ^t^a ^t ')
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # Almacenamos los parámetros que nos envia el form
+    v_url = request.POST.get('url','')
+    v_title = request.POST.get('title','')
+    v_autor = request.POST.get('autor','')
+    v_tags = request.POST.get('tags','')
+    v_time = request.POST.get('time','')
+    v_data = request.POST.get('data','')
+
+    # Comprobamos si existe algún autor con el nombre que se nos ha pasado
+    try:
+        a = Autor.objects.get(name=v_autor)
+    except:
+        request.session['has_message'] = get_notification_text(False, 'oh no, el autor no existe.')
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # Convertimos los siguientes parámetros en arrays
+    v_tags = v_tags.split(',')
+    v_time = v_time.split(',')
+    v_data = v_data.split(',')
+    v_url = v_url.split('v=')
+
+    # Si la longitud de la URL no llega a dos, volvemos a la página.
+    if len(v_url) < 2:
+        request.session['has_message'] = get_notification_text(False, 'oh no, la url no es válida.')
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # Comprobamos si el video ya existe en la base de datos, en caso de no ser así, sigue adelante.
+    try:
+        v = Video.objects.get(url=v_url[1])
+    except:
+        video = RequestVideo(url=v_url[1], title=v_title, autor=a, tags=v_tags, timestamp_time=v_time, timestamp_data=v_data)
+        video.save()
+        request.session['has_message'] = get_notification_text(True)
+        return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+    # En caso de que este aqui, quiere decir que ya existe ese video, por lo que no se hace nada
+    request.session['has_message'] = get_notification_text(False, 'oh no, el video introducido ya existe.')
+    return HttpResponseRedirect(reverse('themyscira:contacto'))
+
+# TODO: Crear una pestaña para pasar de RequestVideo to Video y RequestAutor to Autor por el admin.
 @user_passes_test(lambda u: u.is_staff)
 def aprove(request):
     return HttpResponse("Hola Mundo!")
