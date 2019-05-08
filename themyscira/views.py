@@ -1,4 +1,5 @@
 from django.contrib.postgres.search import SearchVector
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -39,9 +40,23 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+def contacto(request):
+    template = loader.get_template('themyscira/contacto.html')
+    data = Autor.objects.all()
+    context = {
+        "autores": data,
+    }
+    return HttpResponse(template.render(context, request))
+
+@user_passes_test(lambda u: u.is_staff)
+def aprove(request):
+    return HttpResponse("Hola Mundo!")
+
+
 """
-    Se ejecuta la siguiente función cuando se entra en el apartado de search/, para ver los videos.
+    Se ejecuta la siguiente funci  n cuando se entra en el apartado de search/, para ver los videos.
 """
+
 def search(request):
 
     template = loader.get_template('themyscira/search.html')

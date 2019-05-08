@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+body .bg-color-split {
+  height: 100%;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[1];
+      grid-template-columns: repeat(1, 1fr);
+}
+
+body .bg-color-split div:nth-child(1) {
+  background-image: url("../img/bgposible2.png");
+  background-size: cover;
+}
+
+body main {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  height: 75vh;
+  width: 60vw;
+  background-color: #f5faff;
+  border-radius: 7px;
+}
+
+body main .contacto-nav-list {
+  max-height: 64px;
+  height: 64px;
+}
+
+body main .contacto-nav-list ul {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #6738b8;
+  list-style-type: none;
+  display: table;
+}
+
+body main .contacto-nav-list ul li {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  cursor: pointer;
+  width: 25%;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+body main .contacto-main-content {
+  height: calc(100% - 64px);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+body main .contacto-main-content .contact-card {
+  height: 100%;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+body main .contacto-main-content .contact-card form {
+  padding: 30px;
+}
+
+body main .contacto-main-content .contact-card form ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+body main .contacto-main-content .contact-card form ul li {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+body main .contacto-main-content .contact-card form ul li i {
+  color: #6738b8;
+  margin-right: 10px;
+}
+
+body main .contacto-main-content .contact-card form ul li input, body main .contacto-main-content .contact-card form ul li select {
+  border: 1px solid #6738b8;
+  border-radius: 5px;
+  min-height: 35px;
+  min-width: 100%;
+  padding-left: 10px;
+  font-family: 'Lato', sans-serif;
+}
+
+body main .contacto-main-content .contact-card form ul li span span {
+  font-size: 0.6em;
+}
+
+body main .contacto-main-content .contact-card form button {
+  cursor: pointer;
+  margin-top: 40px;
+  height: 66px;
+  width: 100%;
+  background-color: #6738b8;
+  border: none;
+  color: #f5faff;
+  border-radius: 7px;
+  font-size: 1.2em;
+}
+
+body main .contacto-main-content #show-json {
+  position: relative;
+}
+
+body main .contacto-main-content #show-json pre {
+  overflow: scroll;
+  height: 100%;
+  margin: 0;
+  background-color: #E6E6FA;
+  padding: 20px;
+}
+
+body #go-back {
+  cursor: pointer;
+  background-color: #f5faff;
+  color: #6738b8;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  padding: 8px;
+  font-size: 0.9em;
+}
+
+.active {
+  background-color: whitesmoke;
+  border-bottom: 2px solid #6738b8;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.rojo {
+  color: red !important;
+}
+
+.azul {
+  color: #1da1f2 !important;
+}
+
+.negro {
+  color: black !important;
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  body main {
+    width: 85vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  body main {
+    height: 85vh;
+  }
+}
+
+@media only screen and (max-width: 628px) {
+  body main {
+    margin-top: 80px;
+    margin-bottom: 50px;
+    height: 105%;
+  }
+  body main .contacto-main-content {
+    height: auto;
+  }
+  body main .contacto-main-content .contact-card form ul {
+    columns: 1;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+  body main .contacto-main-content .contact-card form button {
+    margin-top: 20px;
+  }
+}

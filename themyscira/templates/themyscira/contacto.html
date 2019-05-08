@@ -1,0 +1,134 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'themyscira/css/contacto.css' %}">
+    <script src="{% static 'themyscira/js/contacto.js' %}"></script>
+    <title>Contacto</title>
+</head>
+<body>
+    <div class="bg-color-split">
+        <div></div>
+        <div></div>
+    </div>
+    <main>
+        <div class="contacto-nav-list">
+            <ul>
+                <li class="active" data-id-card="add-autor">Añadir Autor</li>
+                <li data-id-card="add-video">Añadir Video</li>
+                <li data-id-card="add-json">Añadir en JSON</li>
+                <li data-id-card="show-json">Ejemplo JSON</li>
+            </ul>
+        </div>
+        <div class="contacto-main-content">
+            <div class="contact-card" id="add-autor">
+                <form action="/contacto/addautor" method="POST">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <i class="fas fa-user-circle"></i>
+                            <span>Nombre</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fab fa-youtube rojo"></i>
+                            <span>Youtube</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fab fa-github negro"></i>
+                            <span>Github</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fab fa-twitch"></i>
+                            <span>Twitch</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fab fa-twitter azul"></i>
+                            <span>Twitter</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                    </ul>
+                    <button>Añadir</button>
+                </form>
+            </div>
+            <div class="contact-card hidden" id="add-video">
+                <form action="/contacto/addvideo" method="POST">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <i class="fas fa-link"></i>
+                            <span>URL</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fas fa-user-circle"></i>
+                            <span>Autor</span>
+                        </li>
+                        <li>
+                            <select>
+                                {% for autor in autores %}
+                                    <option value="{{ autor.name }}">{{ autor.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <i class="fas fa-stopwatch"></i>
+                            <span>Timestamp - Time <span>(separados por coma)</span></span>
+                        </li>
+                        <li class="m-b-0">
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fas fa-quote-right"></i>
+                            <span>Título</span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fas fa-tags"></i>
+                            <span>Tags <span>(separados por coma)</span></span>
+                        </li>
+                        <li>
+                            <input type="text">
+                        </li>
+                        <li>
+                            <i class="fas fa-stopwatch"></i>
+                            <span>Timestamp - Data <span>(separados por coma)</span></span>
+                        </li>
+                        <li class="m-b-0">
+                            <input type="text">
+                        </li>  
+                    </ul>
+                    <button>Añadir</button>
+                </form>
+            </div>
+            <div class="contact-card hidden" id="add-json"></div>
+            <div class="contact-card hidden" id="show-json">
+                <pre></pre>
+            </div>
+        </div>
+    </main>
+    <button id="go-back">&#8630; Go Back!</button>
+</body>
+</html>
