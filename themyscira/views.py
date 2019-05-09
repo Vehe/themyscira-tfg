@@ -116,10 +116,60 @@ def addvideo(request):
     request.session['has_message'] = get_notification_text(False, 'oh no, el video introducido ya existe.')
     return HttpResponseRedirect(reverse('themyscira:contacto'))
 
-# TODO: Crear una pestaña para pasar de RequestVideo to Video y RequestAutor to Autor por el admin.
+"""
+    Para acceder a esta ventana tenemos que tener permisos de staff, nos muestra en formato
+    web las requests de videos y autores que nos han hecho los usuarios.
+"""
 @user_passes_test(lambda u: u.is_staff)
-def aprove(request):
-    return HttpResponse("Hola Mundo!")
+def requests(request):
+
+    template = loader.get_template('themyscira/requests.html')
+
+    a = RequestAutor.objects.all()
+    v = RequestVideo.objects.all() 
+
+    context = {
+        'autores': a,
+        'videos': v,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+"""
+    Se ejecuta al enviar el form de la ventana requests/ a la cual solo se entra siendo staff.
+"""
+@user_passes_test(lambda u: u.is_staff)
+def raddautor(request):
+
+    # En caso de que no sea post, se le envia fuera
+    if request.method != 'POST':
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Almacenamos los datos que entran por el form.
+    ra_id = request.POST.get('id','')
+    tipo = request.POST.get('tipo','')
+
+    # En caso de que alguno de los parámetros sea no válido, volvemos a la página.
+    if ra_id == '' or tipo == "":
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Comprobamos si realmente existe este request de autor.
+    try:
+        a = RequestAutor.objects.get(pk=ra_id)
+    except:
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Comprobamos el tipo de petición que se quiere, si aceptar, descartar o petición desconocida.
+    if tipo == 'accept':
+        new = Autor(name=a.name, youtube=a.youtube, twitter=a.twitter, twitch=a.twitch, github=a.github)
+        new.save()
+        a.delete()
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+    elif tipo == 'delete':
+        a.delete()
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+    else:
+        return HttpResponseRedirect(reverse('themyscira:requests'))
 
 
 """
@@ -281,9 +331,11 @@ def addquestion(request):
         request.session['has_message'] = bad_response
         return HttpResponseRedirect(reverse('themyscira:foro'))
 
+    # Guarda los parámetros enviados por el form
     q_title = request.POST.get('titulo-pregunta')
     q_text = request.POST.get('pregunta-text')
 
+    # Crea una nueva Question y la guarda en la bd.
     q = Question(title=q_title, data=q_text, tags=[], notificacion_email=[])
     q.save()
 

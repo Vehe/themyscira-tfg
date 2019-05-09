@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'themyscira/css/requests.css' %}">
+    <script src="{% static 'themyscira/js/requests.js' %}"></script>
+    <title>Requests</title>
+</head>
+<body>
+    <section class="selection-requests">
+        <div class="option-requests active" data-asociated-panel="autor-section">
+            <span>Autor Requests</span>
+        </div>
+        <div class="option-requests"  data-asociated-panel="video-section">
+            <span>Video Requests</span>
+        </div>
+    </section>
+    <section class="content active" id="autor-section">
+        <div class="row">
+            <div class="column"><p>Nombre</p></div>
+            <div class="column"><p>Youtube</p></div>
+            <div class="column"><p>Twitch</p></div>
+            <div class="column"><p>Twitter</p></div>
+            <div class="column"><p>Github</p></div>
+            <div class="column hidden"><p></p></div>
+        </div>
+        {% for autor in autores %}
+           <div class="row">
+                <form action="/requests/addautor/" method="post">
+                    {% csrf_token %}
+                    <div class="column"><p>{{ autor.name }}</p></div>
+                    <div class="column"><p>{{ autor.get_yt.4 }}</p></div>
+                    <div class="column"><p>{{ autor.get_twitch.3 }}</p></div>
+                    <div class="column"><p>{{ autor.get_twitter.3 }}</p></div>
+                    <div class="column"><p>{{ autor.get_github.3 }}</p></div>
+                    <div class="column">
+                        <input type="hidden" value="{{ autor.id }}" name="id">
+                        <button name="tipo" type="submit" value="accept">Aceptar</button>
+                        <button name="tipo" type="submit" value="delete">Rechazar</button>
+                    </div>
+                </form>
+            </div>
+        {% endfor %}
+    </section>
+    <section class="content hidden" id="video-section">
+        <div class="row">
+            <div class="column"><p>URL</p></div>
+            <div class="column"><p>Title</p></div>
+            <div class="column"><p>Tags</p></div>
+            <div class="column"><p>Autor</p></div>
+            <div class="column"><p>Timestamp</p></div>
+            <div class="column hidden"><p></p></div>
+        </div>
+        {% for video in videos %}
+            <div class="row">
+                <form action="/requests/addvideo/" method="post">
+                    {% csrf_token %}
+                    <div class="column"><p>{{ video.url }}</p></div>
+                    <div class="column"><p>{{ video.title }}</p></div>
+                    <div class="column" style="text-align:center;"><p>{{ video.get_tags }}</p></div>
+                    <div class="column"><p>{{ video.autor.name }}</p></div>
+                    <div class="column"><p></p></div>
+                    <div class="column">
+                        <input type="hidden" value="{{ video.id }}" name="id">
+                        <button name="tipo" type="submit" value="accept">Aceptar</button>
+                        <button name="tipo" type="submit" value="delete">Rechazar</button>
+                    </div>
+                </form>
+            </div>
+        {% endfor %}
+    </section>
+    <button onclick="location.href = '/admin/';" class="admin-panel-button">Admin Panel</button>
+</body>
+</html>

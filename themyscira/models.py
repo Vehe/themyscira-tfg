@@ -55,6 +55,18 @@ class RequestAutor(models.Model):
     def __str__(self):
         return self.name
 
+    def get_yt(self):
+        return self.youtube.split('/')
+
+    def get_twitter(self):
+        return self.twitter.split('/')
+
+    def get_twitch(self):
+        return self.twitch.split('/')
+
+    def get_github(self):
+        return self.github.split('/')
+
 class RequestVideo(models.Model):
     url = models.CharField(max_length=100)
     tags = ArrayField(models.CharField(max_length=30), blank=True)
@@ -65,3 +77,6 @@ class RequestVideo(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_tags(self):
+        return ", ".join(map(str,self.tags))
