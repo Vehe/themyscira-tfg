@@ -361,12 +361,12 @@ def addresponse(request):
     r = Response(question=q, data=user_text_response)
     r.save()
 
-    # En caso de que si exista la pregunta, se le añade el email introducido a la lista en la bd
-    q.notificacion_email.append(user_email)
-    q.save()
-
     # Envia un correo de notificación a los usuarios de la lista
     send_mail_to_notification_list(q.notificacion_email)
+
+    # En caso de que si exista la pregunta, se le a  ade el email introducido a la lista en la bd
+    q.notificacion_email.append(user_email)
+    q.save()
 
     request.session['has_message'] = good_response
 
