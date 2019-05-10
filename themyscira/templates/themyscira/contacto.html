@@ -28,7 +28,7 @@
         </div>
         <div class="contacto-main-content">
             <div class="contact-card" id="add-autor">
-                <form action="/contacto/addautor" method="POST">
+                <form action="/contacto/addautor/" method="POST">
                     {% csrf_token %}
                     <ul>
                         <li>
@@ -71,7 +71,7 @@
                 </form>
             </div>
             <div class="contact-card hidden" id="add-video">
-                <form action="/contacto/addvideo" method="POST">
+                <form action="/contacto/addvideo/" method="POST">
                     {% csrf_token %}
                     <ul>
                         <li>

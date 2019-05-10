@@ -161,8 +161,44 @@ def raddautor(request):
 
     # Comprobamos el tipo de petición que se quiere, si aceptar, descartar o petición desconocida.
     if tipo == 'accept':
-        new = Autor(name=a.name, youtube=a.youtube, twitter=a.twitter, twitch=a.twitch, github=a.github)
+        new = Video(name=a.name, youtube=a.youtube, twitter=a.twitter, twitch=a.twitch, github=a.github)
         new.save()
+        a.delete()
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+    elif tipo == 'delete':
+        a.delete()
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+    else:
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+
+@user_passes_test(lambda u: u.is_staff)
+def raddvideo(request):
+
+    # En caso de que no sea post, se le envia fuera
+    if request.method != 'POST':
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Almacenamos los datos que entran por el form.
+    ra_id = request.POST.get('id','')
+    tipo = request.POST.get('tipo','')
+
+    # En caso de que alguno de los parámetros sea no válido, volvemos a la página.
+    if ra_id == '' or tipo == "":
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Comprobamos si realmente existe este request de autor.
+    try:
+        a = RequestVideo.objects.get(pk=ra_id)
+    except:
+        return HttpResponseRedirect(reverse('themyscira:requests'))
+
+    # Comprobamos el tipo de petición que se quiere, si aceptar, descartar o petición desconocida.
+    if tipo == 'accept':
+        t = Timestamp(time=a.timestamp_time, data=a.timestamp_data)
+        t.save()
+        v = Video(url=a.url, tags=a.tags, title=a.title, autor=a.autor, timestamp=t)
+        v.save()
         a.delete()
         return HttpResponseRedirect(reverse('themyscira:requests'))
     elif tipo == 'delete':
