@@ -39,8 +39,8 @@ def get_notification_text(status, msg=''):
 
     return good_response if status else bad_response
 
-# Porfavor hacer esto más seguro
-sender_email = "themyscira.io@gmail.com"
+# Establecemos la dirección de correo y contraseña que vamos a usar.
+sender_email = os.environ.get('CORREO_HOST')
 password = os.environ.get('CORREO_PW')
 
 """

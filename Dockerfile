@@ -7,6 +7,7 @@ ENV DB_USER postgres
 ENV DB_PASSWORD password
 ENV DB_HOST 127.0.0.1
 ENV CORREO_PW password
+ENV CORREO_HOST example@example.com
 
 # Instalación de los paquetes necesarios para el funcionamiento, creamos la base de datos que vamos a usar.
 RUN apt-get update -y && \

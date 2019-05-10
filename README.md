@@ -1,11 +1,11 @@
 # Themyscira
 
 ## Desplegar una copia local
-Para desplegar el proyecto de manera local tanto el servidor web, como la base de datos, debemos tener instalado docker con antelación. 
+Para desplegar el proyecto de manera local tanto el servidor web, como la base de datos, debemos tener instalado docker con antelación.
 - [Como instalar Docker en Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 - [Como instalar Docker en Windows](https://docs.docker.com/docker-for-windows/install/)
 
-Yo lo realizare sobre una máquina `Ubuntu 16.04`. 
+Yo lo realizare sobre una máquina `Ubuntu 16.04`.
 Una vez tengamos docker instalado, debemos seguir los siguientes pasos:
 
 Las credenciales del panel de administrador son `admin:admin`.
@@ -16,7 +16,19 @@ $ git clone https://github.com/Vehe/themyscira-tfg.git
 $ cd themyscira-tfg
 ```
 
-Ahora deberemos construir la imagen a partir del fichero `Dockerfile`, para ello, ejecutamos:
+### Configuración del correo (opcional)
+
+Para continuar con la build local del proyecto, primero debemos configurarlo, el código está configurado para usar una cuenta de `Gmail`, tener en cuenta que hay que activar el modo no seguro, para usar el correo, debemos editar el archivo `Dockerfile` de la siguiente forma, reemplazamos las líneas:
+
+```sh
+export CORREO_PW password
+export CORREO_HOST example@example.com
+```
+
+Por las credenciales correspondientes a nuestro correo.
+
+### Build de la imagen
+Ahora que ya tenemos configurado el correo debemos construir la imagen a partir del fichero `Dockerfile`, para ello, ejecutamos:
 ```sh
 $ docker build -t themyscira .
 ```
