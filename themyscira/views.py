@@ -11,30 +11,35 @@ import sys
 sys.path.insert(0, '/tfg/scripts')
 from tools import *
 
+"""
+    Se ejecuta cuando se pide la página principal de la web.
+    Muestra el template index.html.
+"""
 def index(request):
     template = loader.get_template('themyscira/index.html')
-    context = {
-        'test': 'teeeestttt',
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({'test':'test',}, request))
+
 
 """
     Se ejecuta cuando se entra a la sección de contacto en la web.
+    Devuelve el template contacto.html con la variable autores que contiene todos los autores de la bd.
 """
 def contacto(request):
     template = loader.get_template('themyscira/contacto.html')
     data = Autor.objects.all()
-    context = {
-        "autores": data,
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({'autores':data,}, request))
 
-# TODO: Comprobar los parámetros de entrada del form.
+
+"""
+    Se ejecuta cuando se envía el form de la pestaña de contacto (autor), se guardan todos los parámetros,
+    se comprueba que ese autor no existe en la base de datos, y se crea un nuevo RequestAutor para que 
+    los miembros del staff den el visto bueno.
+"""
 def addautor(request):
 
     request.session.set_expiry(2)
 
-    # En caso de que no sea post, se le envia fuera
+    # En caso de que no sea post, se le devuelve a la pestaña de contacto.
     if request.method != 'POST':
         request.session['has_message'] = get_notification_text(False, 'Buen intento  (ノಠ益ಠ)ノ彡┻━┻')
         return HttpResponseRedirect(reverse('themyscira:contacto'))
@@ -46,7 +51,7 @@ def addautor(request):
     twitter = request.POST.get('twitter','')
     github = request.POST.get('github','')
 
-    # En caso de no haber nombre, volvemos al contacto
+    # En caso de que el nombre esté vacío, se le envía a la página de contacto.
     if autor_name == '':
         request.session['has_message'] = get_notification_text(False, 'oh no, parece que olvidaste el nombre.')
         return HttpResponseRedirect(reverse('themyscira:contacto'))
@@ -56,25 +61,30 @@ def addautor(request):
         a = Autor.objects.get(name=autor_name)
     except:
 
-        # En caso de que todo haya ido bien, guardamos el autor en la tabla de requests.
+        # En caso de que todo haya ido bien, guardamos el autor en la tabla de requests y redirigimos al user a la página contacto.
         r = RequestAutor(name=autor_name, twitter=twitter, twitch=twitch, youtube=youtube, github=github)
         r.save()
 
         request.session['has_message'] = get_notification_text(True)
         return HttpResponseRedirect(reverse('themyscira:contacto'))
 
-    # Si ha llegado aqui, significa que el usuario que ha introducido ya existia, por lo que no se hace nada.
+    # Si ha llegado aqui, significa que el usuario que ha introducido ya existía, por lo que no se hace nada.
     request.session['has_message'] = get_notification_text(False, 'oh no, este autor ya existe!')
     return HttpResponseRedirect(reverse('themyscira:contacto'))
 
-# TODO: Comprobar los parámetros de entrada del form.
+
+"""
+    Se ejecuta cuando se envía el form de la pestaña de contacto (video), se guardan todos los parámetros,
+    se comprueba que ese video no existe en la base de datos, y se crea un nuevo RequestVideo para que 
+    los miembros del staff den el visto bueno.
+"""
 def addvideo(request):
 
     request.session.set_expiry(2)
 
-    # En caso de que no sea post, se le envia fuera
+    # En caso de que no sea post, se le devuelve a la pestaña de contacto.
     if request.method != 'POST':
-        request.session['has_message'] = get_notification_text(False, 'Buen intento  ( ^c^n    ^{^j   ) ^c^n    ^t  ^t^a ^t ')
+        request.session['has_message'] = get_notification_text(False, 'Buen intento  (ノಠ益ಠ)ノ彡┻━┻')
         return HttpResponseRedirect(reverse('themyscira:contacto'))
 
     # Almacenamos los parámetros que nos envia el form
@@ -98,23 +108,26 @@ def addvideo(request):
     v_data = v_data.split(',')
     v_url = v_url.split('v=')
 
-    # Si la longitud de la URL no llega a dos, volvemos a la página.
+    # Comprobamos si la url es válida (URL completa), en caso de no serlo, volvemos a la pestaña de contacto.
     if len(v_url) < 2:
         request.session['has_message'] = get_notification_text(False, 'oh no, la url no es válida.')
         return HttpResponseRedirect(reverse('themyscira:contacto'))
 
-    # Comprobamos si el video ya existe en la base de datos, en caso de no ser así, sigue adelante.
+    # Comprobamos si el video ya existe en la base de datos.
     try:
         v = Video.objects.get(url=v_url[1])
     except:
+        # Se ejecuta en caso de que el vídeo no esté en la base de datos, así que creamos un request para posterior revisión.
         video = RequestVideo(url=v_url[1], title=v_title, autor=a, tags=v_tags, timestamp_time=v_time, timestamp_data=v_data)
         video.save()
+
         request.session['has_message'] = get_notification_text(True)
         return HttpResponseRedirect(reverse('themyscira:contacto'))
 
-    # En caso de que este aqui, quiere decir que ya existe ese video, por lo que no se hace nada
+    # En caso de que este aqui, quiere decir que ya existe ese video, por lo que no se hace nada.
     request.session['has_message'] = get_notification_text(False, 'oh no, el video introducido ya existe.')
     return HttpResponseRedirect(reverse('themyscira:contacto'))
+
 
 """
     Para acceder a esta ventana tenemos que tener permisos de staff, nos muestra en formato
@@ -122,26 +135,20 @@ def addvideo(request):
 """
 @user_passes_test(lambda u: u.is_staff)
 def requests(request):
-
     template = loader.get_template('themyscira/requests.html')
-
     a = RequestAutor.objects.all()
-    v = RequestVideo.objects.all() 
+    v = RequestVideo.objects.all()
+    return HttpResponse(template.render({'autores':a,'videos':v,}, request))
 
-    context = {
-        'autores': a,
-        'videos': v,
-    }
-
-    return HttpResponse(template.render(context, request))
 
 """
-    Se ejecuta al enviar el form de la ventana requests/ a la cual solo se entra siendo staff.
+    Se ejecuta cuando se envía el form de la pestaña requests seccion autor, su función es borrar el request o 
+    aceptarlo y pasar de ser un RequestAutor a Autor.
 """
 @user_passes_test(lambda u: u.is_staff)
 def raddautor(request):
 
-    # En caso de que no sea post, se le envia fuera
+    # En caso de que no sea post, se le devuelve a la pestaña requests.
     if request.method != 'POST':
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
@@ -149,11 +156,11 @@ def raddautor(request):
     ra_id = request.POST.get('id','')
     tipo = request.POST.get('tipo','')
 
-    # En caso de que alguno de los parámetros sea no válido, volvemos a la página.
+    # En caso de que alguno de los parámetros sea no válido, volvemos a la página requests.
     if ra_id == '' or tipo == "":
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
-    # Comprobamos si realmente existe este request de autor.
+    # Comprobamos si realmente existe este request de autor, en caso de no existir, volvemos a la pestaña requests.
     try:
         a = RequestAutor.objects.get(pk=ra_id)
     except:
@@ -161,21 +168,28 @@ def raddautor(request):
 
     # Comprobamos el tipo de petición que se quiere, si aceptar, descartar o petición desconocida.
     if tipo == 'accept':
-        new = Video(name=a.name, youtube=a.youtube, twitter=a.twitter, twitch=a.twitch, github=a.github)
+        # Convierte el RequestAutor en Autor, y elimina el request.
+        new = Autor(name=a.name, youtube=a.youtube, twitter=a.twitter, twitch=a.twitch, github=a.github)
         new.save()
         a.delete()
         return HttpResponseRedirect(reverse('themyscira:requests'))
     elif tipo == 'delete':
+        # Elimina la entrada en RequestAutor.
         a.delete()
         return HttpResponseRedirect(reverse('themyscira:requests'))
     else:
+        # Se ha realizado una petición desconocida, por lo que se vuelve a la pestaña requests sin hacer cambios.
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
 
+"""
+    Se ejecuta cuando se envía el form de la pestaña requests seccion video, su función es borrar el request o 
+    aceptarlo y pasar de ser un RequestVideo a Video.
+"""
 @user_passes_test(lambda u: u.is_staff)
 def raddvideo(request):
 
-    # En caso de que no sea post, se le envia fuera
+    # En caso de que no sea post, se le devuelve a la pestaña requests.
     if request.method != 'POST':
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
@@ -183,11 +197,11 @@ def raddvideo(request):
     ra_id = request.POST.get('id','')
     tipo = request.POST.get('tipo','')
 
-    # En caso de que alguno de los parámetros sea no válido, volvemos a la página.
+    # En caso de que alguno de los parámetros sea no válido, volvemos a la página requests.
     if ra_id == '' or tipo == "":
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
-    # Comprobamos si realmente existe este request de autor.
+    # Comprobamos si realmente existe este RequestVideo.
     try:
         a = RequestVideo.objects.get(pk=ra_id)
     except:
@@ -195,6 +209,7 @@ def raddvideo(request):
 
     # Comprobamos el tipo de petición que se quiere, si aceptar, descartar o petición desconocida.
     if tipo == 'accept':
+        # Crea un Timesamp y crea el Video asociandole este Timestamp.
         t = Timestamp(time=a.timestamp_time, data=a.timestamp_data)
         t.save()
         v = Video(url=a.url, tags=a.tags, title=a.title, autor=a.autor, timestamp=t)
@@ -202,16 +217,19 @@ def raddvideo(request):
         a.delete()
         return HttpResponseRedirect(reverse('themyscira:requests'))
     elif tipo == 'delete':
+        # Elimina la entrada en RequestAutor.
         a.delete()
         return HttpResponseRedirect(reverse('themyscira:requests'))
     else:
+        # Se ha realizado una petición desconocida, por lo que se vuelve a la pestaña requests sin hacer cambios.
         return HttpResponseRedirect(reverse('themyscira:requests'))
 
 
 """
-    Se ejecuta la siguiente funci  n cuando se entra en el apartado de search/, para ver los videos.
+    Se ejecuta la siguiente función cuando se entra en el apartado de search/, para ver los videos.
+    Si se envía una petición GET con el parámetro q y este no está vacío, se usa un algorítmo de búsqueda sobre el 
+    titulo y los tag del video por probabilidad, en caso de estar vacío o no estar, se muestran todos los videos.
 """
-
 def search(request):
 
     template = loader.get_template('themyscira/search.html')
@@ -262,18 +280,15 @@ def search(request):
 
         return HttpResponse(template.render({'videos':data,}, request))
 
+
 """
     Se ejecuta cuando vamos a la página de foro/ muestra todas las preguntas y respuestas que tenemos.
 """
 def forum(request):
+    template = loader.get_template('themyscira/forum.html')
     preguntas = Question.objects.all()
     respuestas = Response.objects.all()
-    template = loader.get_template('themyscira/forum.html')
-    context = {
-        'preguntas': preguntas,
-        'respuestas': respuestas,
-    }
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({'preguntas':preguntas, 'respuestas':respuestas,}, request))
 
 
 """
@@ -283,34 +298,35 @@ def getnotify(request):
 
     request.session.set_expiry(2)
 
-    # En caso de que no sea post, se le envia fuera
+    # En caso de que no sea post, se le envía de nuevo al foro.
     if request.method != 'POST':
         request.session['has_message'] = bad_response
         return HttpResponseRedirect(reverse('themyscira:foro'))
 
-    # Se guardan los datos que envia el form
+    # Se guardan los datos que envía el form.
     user_email = request.POST.get('n-email')
     question = request.POST.get('n-question')
 
-    # Si los datos recibidos no son válidos, se le envia fuera
+    # Si los datos recibidos no son válidos, se le envia de nuevo al foro.
     if not check_correct_data(user_email, question):
         request.session['has_message'] = bad_response
         return HttpResponseRedirect(reverse('themyscira:foro'))
 
-    # Comprobamos si la pregunta que se busca existe realmente
+    # Comprobamos si la pregunta que se busca existe realmente.
     try:
         q = Question.objects.get(pk=question)
     except:
         request.session['has_message'] = bad_response
         return HttpResponseRedirect(reverse('themyscira:foro'))
 
-    # En caso de que si exista la pregunta, se le añade el email introducido a la lista en la bd
+    # En caso de que si exista la pregunta, se le añade el email introducido a la lista en la bd.
     q.notificacion_email.append(user_email)
     q.save()
 
     request.session['has_message'] = good_response
 
     return HttpResponseRedirect(reverse('themyscira:foro'))
+
 
 """
     Se llama a la función cuando se crear una nueva respuesta para una pregunta dada.
@@ -357,7 +373,9 @@ def addresponse(request):
     return HttpResponseRedirect(reverse('themyscira:foro'))
 
 
-# TODO: Securizar el input el usuario en el form
+"""
+    Se ejecuta cuando se desea añadir una nueva pregunta al foro.
+"""
 def addquestion(request):
 
     request.session.set_expiry(2)
