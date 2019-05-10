@@ -8,6 +8,8 @@ Para desplegar el proyecto de manera local tanto el servidor web, como la base d
 Yo lo realizare sobre una máquina `Ubuntu 16.04`. 
 Una vez tengamos docker instalado, debemos seguir los siguientes pasos:
 
+Las credenciales del panel de administrador son `admin:admin`.
+
 Primero tenemos que clonar y entrar al directorio con los siguientes comandos:
 ```sh
 $ git clone https://github.com/Vehe/themyscira-tfg.git
