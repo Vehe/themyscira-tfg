@@ -19,6 +19,9 @@ from tools import *
     Muestra el template index.html.
 """
 def index(request):
+
+    template = loader.get_template('themyscira/index.html')
+
     template = loader.get_template('themyscira/index.html')
 
     # Variables
@@ -44,6 +47,7 @@ def index(request):
     context.update(data['data'][0])
 
     return HttpResponse(template.render({'streamer': context,}, request))
+
 
 """
     Se ejecuta cuando se entra a la sección de contacto en la web.
