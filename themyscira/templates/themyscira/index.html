@@ -14,15 +14,15 @@
     <title>Themyscira</title>
 </head>
 <body>
-
     <header>
         <div class="h-navbar">
             <div class="h-navbar-logo">
 		    <a href="/"><img src="{% static 'themyscira/img/o-3-t.PNG' %}" alt="Logo Themyscira"></a>
             </div>
             <div class="h-navbar-search">
-                <form action="#">
-                    <input type="text" placeholder="Buscar ...">
+                <form action="/search/">
+                {% csrf_token %}
+                    <input type="text" placeholder="Buscar en videos ..." name="q">
                     <div class="lupa-search-bar">
 			<img src="{% static 'themyscira/img/busqueda.svg' %}" alt="Glass Image">
                     </div>
@@ -53,7 +53,7 @@
             <div class="h-main-video">
                 <div>
                     <iframe
-                        src="https://player.twitch.tv/?channel=adam13531&muted=true"
+                        src="https://player.twitch.tv/?channel={{ streamer.login }}&muted=true"
                         frameborder="0"
                         scrolling="no"
                         allowfullscreen="true">
@@ -68,8 +68,16 @@
                         <iframe frameborder="0"
                             scrolling="no"
                             id="chat-embed"
-                            src="https://www.twitch.tv/embed/adam13531/chat">
+                            src="https://www.twitch.tv/embed/{{ streamer.login }}/chat">
                         </iframe>
+                        <div class="streamer-info">
+                            <div class="streamer-info-data">
+                                <i class="fab fa-twitch"></i>
+                                <a href="https://www.twitch.tv/{{ streamer.login }}">{{ streamer.display_name}}</a>
+                            </div>
+                            <span class="streamer-info-title">{{ streamer.title }}</span> 
+                            <span class="streamer-info-desc">{{ streamer.description }}</span>
+                        </div>
                     </div>
                 </div>
             </div>

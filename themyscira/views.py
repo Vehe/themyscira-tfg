@@ -5,6 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import *
+import requests as rq
+import random
+import json
 
 # Importa el fichero tools.py que contiene funciones de ayuda.
 import sys
@@ -17,8 +20,30 @@ from tools import *
 """
 def index(request):
     template = loader.get_template('themyscira/index.html')
-    return HttpResponse(template.render({'test':'test',}, request))
 
+    # Variables
+    context = {}
+    live = []
+    t = Twitch.objects.all()
+    auth_header = {'Client-ID': 'shvvm6arui2mnb87xh6tqrb5i0zz4z'}
+
+    # Por cada canal de la tabla de twitch buscamos los que están en directo.
+    for channel in t:
+        r = rq.get('https://api.twitch.tv/helix/streams?user_id=' + channel.t_id, headers=auth_header)
+        data = json.loads(json.dumps(r.json()))
+        # Si el canal está en directo, lo guardamos en un array.
+        if len(data['data']) > 0 and data['data'][0]['type'] == 'live':
+            live.append( { 'user_name' : channel.name, 'user_id' : channel.t_id , 'title' : data['data'][0]['title'] })
+
+    # Seleccionamos de manera aleatoria un canal que esté en directo.
+    context.update(random.choice(live))
+
+    # Almacenamos más información sobre el usuario en cuestión, para enviar esta al template.
+    r = rq.get('https://api.twitch.tv/helix/users?id=' + context['user_id'], headers=auth_header)
+    data = json.loads(json.dumps(r.json()))
+    context.update(data['data'][0])
+
+    return HttpResponse(template.render({'streamer': context,}, request))
 
 """
     Se ejecuta cuando se entra a la sección de contacto en la web.

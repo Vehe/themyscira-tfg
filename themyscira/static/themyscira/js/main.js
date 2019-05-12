@@ -8,9 +8,11 @@ window.addEventListener('load', function() {
         const chat_embed = document.getElementById( 'chat-embed' );
 
         if(chat_embed.style.display == "none" || chat_embed.style.display == "") {
+            document.querySelector('.streamer-info').style.display = "none";
             chat_embed.style.display = "block";
             this.textContent = "Hidde Chat";
         } else {
+            document.querySelector('.streamer-info').removeAttribute( 'style' );
             chat_embed.removeAttribute( 'style' );
             this.textContent = "Show Chat";
         }

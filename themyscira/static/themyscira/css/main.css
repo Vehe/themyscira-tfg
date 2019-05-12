@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 html, body {
   margin: 0;
   min-height: 100%;
@@ -134,7 +134,7 @@ body header .h-main {
 }
 
 body header .h-main .h-main-video {
-  height: 100%;
+  height: calc(100vh - 153px - 150px - 30px);
 }
 
 body header .h-main .h-main-video div {
@@ -156,7 +156,7 @@ body header .h-main .h-main-video div img {
 }
 
 body header .h-main .h-main-data {
-  height: 100%;
+  height: calc(100vh - 153px - 150px - 30px);
 }
 
 body header .h-main .h-main-data .h-main-data-chat {
@@ -171,21 +171,67 @@ body header .h-main .h-main-data .h-main-data-chat div {
 }
 
 body header .h-main .h-main-data .h-main-data-chat div button {
+  cursor: pointer;
   position: absolute;
   top: 5px;
   left: 5px;
-  background-color: #191970;
-  color: white;
-  border: 1px solid white;
+  z-index: 10000;
+  background-color: whitesmoke;
+  color: black;
+  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   width: 180px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 body header .h-main .h-main-data .h-main-data-chat div iframe {
   display: none;
   height: 100%;
   width: 100%;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info {
+  height: calc(100% - 60px);
+  padding-top: 60px;
+  padding-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-title {
+  color: white;
+  font-size: 1.7em;
+  margin-top: 15px;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-data {
+  height: auto;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-data i {
+  font-size: 1.5em;
+  padding-right: 10px;
+  color: #6441a5;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-data a {
+  font-size: 1.4em;
+  text-decoration: none;
+  color: white;
+}
+
+body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-desc {
+  color: white;
+  font-size: 1.3em;
+  margin-top: 15px;
 }
 
 /* ----------------------------------------------------------------------
@@ -210,15 +256,15 @@ body header .h-main .h-main-data .h-main-data-chat div iframe {
   body header .h-main {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 70% 30%;
-        grid-template-columns: 70% 30%;
+    -ms-grid-columns: 60% 40%;
+        grid-template-columns: 60% 40%;
   }
   body header .h-main .h-main-video div {
     height: calc(100% - 160px);
     padding: 80px 40px 80px 40px;
   }
   body header .h-main .h-main-video div img {
-    left: 40px;
+    left: 80px;
   }
   body header .h-main .h-main-data {
     height: 100%;
@@ -291,6 +337,19 @@ body header .h-main .h-main-data .h-main-data-chat div iframe {
   body header .h-slogan {
     height: 100px;
   }
+  body header .h-main {
+    height: calc(100vh - 153px - 100px);
+  }
+  body header .h-main .h-main-video {
+    height: calc(100vh - 153px - 140px);
+  }
+  body header .h-main .h-main-video div {
+    padding: 20px 60px 40px 60px !important;
+  }
+  body header .h-main .h-main-video div img {
+    top: 20px !important;
+    left: 60px !important;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -325,4 +384,67 @@ body header .h-main .h-main-data .h-main-data-chat div iframe {
         grid-template-columns: 5% 90% 5%;
     height: 80px;
   }
+  body header .h-main {
+    height: calc(100vh - 153px - 80px);
+  }
+  body header .h-main .h-main-video {
+    height: calc(100vh - 153px - 100px);
+  }
+  body header .h-main .h-main-video div {
+    padding: 20px 40px 20px 40px !important;
+  }
+  body header .h-main .h-main-video div img {
+    left: 40px !important;
+  }
 }
+
+@media only screen and (max-height: 852px) {
+  body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-title {
+    font-size: 1.4em;
+  }
+  body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-desc {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  body header .h-main .h-main-video div {
+    height: calc(100% - 60px);
+    padding: 20px 40px 40px 80px;
+  }
+  body header .h-main .h-main-video div img {
+    top: 20px;
+  }
+  body header .h-main .h-main-data .h-main-data-chat {
+    height: calc(100% - 60px);
+    padding: 20px 80px 40px 40px;
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  body header .h-slogan {
+    padding: 0;
+  }
+  body header .h-main .h-main-video div {
+    height: calc(100% - 20px);
+    padding: 0 40px 20px 80px;
+  }
+  body header .h-main .h-main-video div img {
+    height: 110px;
+    top: 0;
+  }
+  body header .h-main .h-main-data .h-main-data-chat {
+    height: calc(100% - 20px);
+    padding: 0 80px 20px 40px;
+  }
+}
+
+@media only screen and (max-height: 650px) {
+  body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-title {
+    font-size: 1.2em;
+  }
+  body header .h-main .h-main-data .h-main-data-chat div .streamer-info .streamer-info-desc {
+    font-size: 1em;
+  }
+}
+/*# sourceMappingURL=main.css.map */
