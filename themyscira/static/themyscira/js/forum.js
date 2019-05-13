@@ -63,6 +63,7 @@ $( document ).ready(function() {
     $( '.opacity-bg-message' ).click(function() {
 
         $( this ).parent().parent().toggle();
+        $( this ).closest('article').find('.notificacion').css('color', 'black');
 
     });
 
