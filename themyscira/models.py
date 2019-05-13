@@ -94,11 +94,3 @@ class RequestVideo(models.Model):
     # Devuelve una string con todos los tag separados por coma.
     def get_tags(self):
         return ", ".join(map(str,self.tags))
-
-# Se usa para guardar usuarios haciendo streaming para la pestaña principal.
-class Twitch(models.Model):
-    name = models.CharField(max_length=100)
-    t_id = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
