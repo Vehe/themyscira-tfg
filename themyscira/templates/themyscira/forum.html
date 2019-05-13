@@ -21,7 +21,6 @@
             </div>
             <div class="h-navbar-search">
                 <form action="/search/">
-                {% csrf_token %}
                     <input type="text" placeholder="Buscar en videos ..." name="q">
                     <div class="lupa-search-bar">
                         <img src="{% static 'themyscira/img/busqueda.svg' %}" alt="Glass Image">
